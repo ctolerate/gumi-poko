@@ -1902,8 +1902,42 @@ h3{
 
 @media(max-width:850px){
 
+  /* MOBILE NAVIGATION
+     Keep the page links available on phones.
+     They scroll horizontally instead of disappearing. */
+  .nav{
+    flex-wrap:wrap;
+    gap:10px;
+    padding:12px 14px;
+  }
+
+  .brand{
+    flex-shrink:0;
+  }
+
   .navlinks{
+    display:flex;
+    width:100%;
+    gap:8px;
+    align-items:center;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    padding:3px 2px 6px;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .navlinks::-webkit-scrollbar{
     display:none;
+  }
+
+  .navlinks a{
+    flex-shrink:0;
+    padding:7px 10px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:999px;
+    background:rgba(255,255,255,.04);
   }
 
   .heroGrid,
