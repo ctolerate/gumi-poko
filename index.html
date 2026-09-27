@@ -16,10 +16,7 @@
      ONE SINGLE AUDIO
 ========================= -->
 
-<audio
-  id="loveSong"
-  preload="auto"
->
+<audio id="loveSong" preload="auto">
   <source
     src="assets/i-think-they-call-this-love.mp3"
     type="audio/mpeg"
@@ -56,10 +53,7 @@
       One little love story.
     </p>
 
-    <button
-      id="loveStart"
-      type="button"
-    >
+    <button id="loveStart" type="button">
       <span>▶</span>
       Play Our Song
     </button>
@@ -79,38 +73,23 @@
 
 <nav class="nav">
 
-  <a
-    class="brand"
-    href="index.html"
-  >
+  <a class="brand" href="index.html">
     Gumi <b>×</b> Poko
   </a>
 
   <div class="navlinks">
 
-    <a href="story.html">
-      Our Story
-    </a>
+    <a href="story.html">Our Story</a>
 
-    <a href="gumi.html">
-      Gumi
-    </a>
+    <a href="gumi.html">Gumi</a>
 
-    <a href="memories.html">
-      Memories
-    </a>
+    <a href="memories.html">Memories</a>
 
-    <a href="videos.html">
-      Videos
-    </a>
+    <a href="videos.html">Videos</a>
 
-    <a href="letter.html">
-      Letter
-    </a>
+    <a href="letter.html">Letter</a>
 
-    <a href="final.html">
-      ♡
-    </a>
+    <a href="final.html">♡</a>
 
   </div>
 
@@ -131,27 +110,23 @@ document.getElementById("sparkles");
 for(let i = 0; i < 90; i++){
 
   const sparkle =
-    document.createElement("span");
+  document.createElement("span");
 
   sparkle.className =
-    "spark " +
-    (
-      Math.random() < 0.18
-      ? "star"
-      : ""
-    );
+  "spark " +
+  (Math.random() < 0.18 ? "star" : "");
 
   sparkle.style.left =
-    Math.random() * 100 + "vw";
+  Math.random() * 100 + "vw";
 
   sparkle.style.top =
-    Math.random() * 110 + "vh";
+  Math.random() * 110 + "vh";
 
   sparkle.style.animationDuration =
-    (5 + Math.random() * 10) + "s";
+  (5 + Math.random() * 10) + "s";
 
   sparkle.style.animationDelay =
-    (-Math.random() * 12) + "s";
+  (-Math.random() * 12) + "s";
 
   sparkleContainer.appendChild(
     sparkle
@@ -215,17 +190,11 @@ for(let i = 0; i < 90; i++){
 
       <div class="heroBtns">
 
-        <a
-          class="btn"
-          href="story.html"
-        >
+        <a class="btn" href="story.html">
           Start our story →
         </a>
 
-        <a
-          class="btn alt"
-          href="letter.html"
-        >
+        <a class="btn alt" href="letter.html">
           A letter for Gumi
         </a>
 
@@ -275,37 +244,7 @@ for(let i = 0; i < 90; i++){
 
 
 <!-- =====================================================
-     OUR SONG
-===================================================== -->
-
-<section class="section">
-
-  <div class="glass card">
-
-    <div class="kicker">
-      OUR SONG ♡
-    </div>
-
-    <div class="quote">
-      “I think they call this love.”
-    </div>
-
-    <p class="lead">
-
-      One song for one very unexpected story.
-
-      From one random conversation
-      to Gumi and Poko.
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ANIME KISS
+     ANIME KISS SECTION
 ===================================================== -->
 
 <section class="section">
@@ -360,6 +299,58 @@ for(let i = 0; i < 90; i++){
 
       “ਥੋੜ੍ਹੀ ਜਿਹੀ cute ਜਿਹੀ love story…
       ਪਰ ਮੇਰੇ ਲਈ ਬਹੁਤ ਵੱਡੀ ਗੱਲ ਏ।” 🥹
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SINCE 31 AUGUST
+===================================================== -->
+
+<section class="section">
+
+  <div class="glass card sinceBox">
+
+    <div class="kicker">
+      SINCE 31 AUGUST 2026
+    </div>
+
+    <div class="sinceTitle">
+      One month of us. ❤️
+    </div>
+
+    <p class="lead">
+
+      30 days ago, you were just a random person
+      on AirTalk.
+
+      <br><br>
+
+      Somehow, that random conversation became
+      Gumi × Poko.
+
+    </p>
+
+    <div class="sinceCounter">
+
+      <span id="daysTogether">
+        30
+      </span>
+
+      <small>
+        days of us
+      </small>
+
+    </div>
+
+    <p class="punjabi sinceLine">
+
+      “ਇੱਕ random ਗੱਲਬਾਤ ਤੋਂ...
+      ਇੱਥੇ ਤੱਕ ਆ ਗਏ।” ❤️
 
     </p>
 
@@ -480,9 +471,9 @@ for(let i = 0; i < 90; i++){
 </main>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE NAVIGATION
-===================================================== -->
+========================= -->
 
 <div class="pageNav">
 
@@ -522,9 +513,9 @@ for(let i = 0; i < 90; i++){
 </footer>
 
 
-<!-- =====================================================
+<!-- =========================
      BOTTOM RIGHT SONG PLAYER
-===================================================== -->
+========================= -->
 
 <div
   class="songPlayer"
@@ -554,59 +545,57 @@ for(let i = 0; i < 90; i++){
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      FLOATING HEARTS
-===================================================== -->
+========================= -->
 
 <script>
 
 function createHeart(){
 
   const heart =
-    document.createElement("span");
+  document.createElement("span");
 
   heart.innerHTML =
-    Math.random() > .5
-    ? "♥"
-    : "♡";
+  Math.random() > .5
+  ? "♥"
+  : "♡";
 
   heart.style.position =
-    "fixed";
+  "fixed";
 
   heart.style.left =
-    Math.random() * 100 + "vw";
+  Math.random() * 100 + "vw";
 
   heart.style.bottom =
-    "-30px";
+  "-30px";
 
   heart.style.fontSize =
-    (12 + Math.random() * 18) + "px";
+  (12 + Math.random() * 18) + "px";
 
   heart.style.color =
-    Math.random() > .5
-    ? "#ff4fa3"
-    : "#60a5fa";
+  Math.random() > .5
+  ? "#ff4fa3"
+  : "#60a5fa";
 
   heart.style.pointerEvents =
-    "none";
+  "none";
 
   heart.style.zIndex =
-    "1";
+  "1";
 
   heart.style.textShadow =
-    "0 0 15px currentColor";
+  "0 0 15px currentColor";
 
   heart.style.animation =
-    "floatingHeart 5s linear forwards";
+  "floatingHeart 5s linear forwards";
 
   document.body.appendChild(
     heart
   );
 
   setTimeout(() => {
-
     heart.remove();
-
   }, 5000);
 
 }
@@ -619,47 +608,43 @@ setInterval(
 </script>
 
 
-<!-- =====================================================
+<!-- =========================
      SONG CONTROLLER
-===================================================== -->
+========================= -->
 
 <script>
 
 const loveSong =
-  document.getElementById("loveSong");
+document.getElementById("loveSong");
 
 const loveIntro =
-  document.getElementById("loveIntro");
+document.getElementById("loveIntro");
 
 const loveStart =
-  document.getElementById("loveStart");
+document.getElementById("loveStart");
 
 const songPlayer =
-  document.getElementById("songPlayer");
+document.getElementById("songPlayer");
 
 const songButton =
-  document.getElementById("songButton");
+document.getElementById("songButton");
 
 const songIcon =
-  document.getElementById("songIcon");
+document.getElementById("songIcon");
 
 const songText =
-  document.getElementById("songText");
+document.getElementById("songText");
 
-
-/* =========================
-   UPDATE BOTTOM BUTTON
-========================= */
 
 function updateSongUI(){
 
   if(loveSong.paused){
 
     songIcon.textContent =
-      "▶";
+    "▶";
 
     songText.textContent =
-      "Play Our Song";
+    "Play Our Song";
 
     songButton.classList.remove(
       "playing"
@@ -670,10 +655,10 @@ function updateSongUI(){
   else{
 
     songIcon.textContent =
-      "❚❚";
+    "❚❚";
 
     songText.textContent =
-      "Pause Our Song";
+    "Pause Our Song";
 
     songButton.classList.add(
       "playing"
@@ -683,10 +668,6 @@ function updateSongUI(){
 
 }
 
-
-/* =========================
-   CLOSE INTRO
-========================= */
 
 function hideLoveIntro(){
 
@@ -700,10 +681,6 @@ function hideLoveIntro(){
 
 }
 
-
-/* =========================
-   INTRO PLAY BUTTON
-========================= */
 
 loveStart.addEventListener(
   "click",
@@ -738,10 +715,6 @@ loveStart.addEventListener(
 );
 
 
-/* =========================
-   BOTTOM PLAYER
-========================= */
-
 songButton.addEventListener(
   "click",
   async function(){
@@ -775,10 +748,6 @@ songButton.addEventListener(
 );
 
 
-/* =========================
-   AUDIO EVENTS
-========================= */
-
 loveSong.addEventListener(
   "play",
   updateSongUI
@@ -801,9 +770,50 @@ loveSong.addEventListener(
 );
 
 
-/* Initial state */
-
 updateSongUI();
+
+</script>
+
+
+<!-- =========================
+     DAYS TOGETHER
+========================= -->
+
+<script>
+
+const startDate =
+new Date("2026-08-31T00:00:00");
+
+
+function updateDaysTogether(){
+
+  const now =
+  new Date();
+
+  const difference =
+  now.getTime() -
+  startDate.getTime();
+
+  const days =
+  Math.floor(
+    difference /
+    (1000 * 60 * 60 * 24)
+  );
+
+  document.getElementById(
+    "daysTogether"
+  ).textContent =
+  Math.max(0, days);
+
+}
+
+
+updateDaysTogether();
+
+setInterval(
+  updateDaysTogether,
+  60000
+);
 
 </script>
 

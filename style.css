@@ -2203,3 +2203,98 @@ h3{
   }
 
 }
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+.pageNav {
+  width: min(100% - 32px, 1100px);
+  margin: 55px auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+/* Navigation buttons */
+
+.pageNav a {
+  min-width: 150px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 22px;
+
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.055);
+  backdrop-filter: blur(12px);
+
+  color: #dce7ff;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  letter-spacing: 0.3px;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.pageNav a:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255,255,255,0.09);
+
+  border-color: rgba(150,190,255,0.35);
+
+  box-shadow:
+    0 12px 35px rgba(50,100,200,0.16),
+    0 0 25px rgba(100,160,255,0.08);
+}
+
+.pageNav a:active {
+  transform: translateY(0);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .pageNav {
+    width: calc(100% - 28px);
+
+    margin: 40px auto 18px;
+
+    gap: 14px;
+  }
+
+  .pageNav a {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 13px 10px;
+
+    border-radius: 14px;
+
+    font-size: 13px;
+  }
+
+}
