@@ -1,0 +1,712 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gumi · Gumi × Poko</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* =========================
+   GUMI PAGE SPECIAL EFFECTS
+========================= */
+
+.gumiHero{
+  text-align:center;
+  padding:40px 0 55px;
+}
+
+.gumiHero .kicker{
+  color:#60a5fa;
+}
+
+.gumiHero h2{
+  font-size:clamp(48px,7vw,90px);
+  margin-bottom:18px;
+  background:linear-gradient(
+    100deg,
+    #60a5fa,
+    #7c6cff,
+    #ff6fb5,
+    #60a5fa
+  );
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:gradientFlow 7s ease infinite;
+}
+
+@keyframes gradientFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+
+/* floating heart */
+
+.floatingHeart{
+  position:fixed;
+  pointer-events:none;
+  z-index:5;
+  font-size:20px;
+  animation:heartFloat 4s linear forwards;
+  filter:drop-shadow(0 0 10px rgba(255,105,180,.7));
+}
+
+@keyframes heartFloat{
+  0%{
+    opacity:0;
+    transform:translateY(20px) scale(.5) rotate(0deg);
+  }
+
+  15%{opacity:1}
+
+  100%{
+    opacity:0;
+    transform:translateY(-180px) scale(1.5) rotate(25deg);
+  }
+}
+
+
+/* photo hover */
+
+.gumiPhoto{
+  position:relative;
+  overflow:hidden;
+}
+
+.gumiPhoto img{
+  transition:
+    transform .8s cubic-bezier(.2,.8,.2,1),
+    filter .5s ease;
+}
+
+.gumiPhoto:hover img{
+  transform:scale(1.08);
+  filter:saturate(1.15) brightness(1.05);
+}
+
+.gumiPhoto:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 25%,
+      rgba(255,255,255,.35) 50%,
+      transparent 75%
+    );
+  transform:translateX(-120%);
+  transition:.8s;
+  pointer-events:none;
+}
+
+.gumiPhoto:hover:after{
+  transform:translateX(120%);
+}
+
+
+/* little badge */
+
+.photoBadge{
+  position:absolute;
+  top:15px;
+  right:15px;
+  z-index:3;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(2,6,23,.58);
+  color:white;
+  backdrop-filter:blur(12px);
+  font-size:11px;
+  font-weight:900;
+  border:1px solid rgba(255,255,255,.25);
+}
+
+
+/* love cards */
+
+.loveCard{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+.loveCard:hover{
+  transform:translateY(-8px);
+  box-shadow:
+    0 25px 70px rgba(20,60,150,.32);
+}
+
+.loveCard:before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:rgba(96,165,250,.16);
+  right:-70px;
+  top:-70px;
+  filter:blur(10px);
+}
+
+
+/* special quote */
+
+.gumiQuote{
+  text-align:center;
+  padding:55px 30px;
+}
+
+.gumiQuote .quote{
+  font-size:clamp(30px,5vw,58px);
+}
+
+
+/* clickable heart */
+
+.loveButton{
+  border:0;
+  cursor:pointer;
+  font-family:inherit;
+  color:white;
+  font-weight:900;
+  font-size:15px;
+  padding:14px 22px;
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      100deg,
+      #173b9c,
+      #7c6cff,
+      #ff6fb5
+    );
+
+  box-shadow:
+    0 15px 40px rgba(23,59,156,.35);
+
+  transition:.3s;
+}
+
+.loveButton:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:
+    0 20px 50px rgba(255,111,181,.35);
+}
+
+.loveButton:active{
+  transform:scale(.96);
+}
+
+
+/* little sparkle ring */
+
+.sparkleRing{
+  width:90px;
+  height:90px;
+  margin:0 auto 20px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:38px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(96,165,250,.25),
+      rgba(124,108,255,.12),
+      transparent 70%
+    );
+
+  box-shadow:
+    0 0 50px rgba(96,165,250,.25);
+
+  animation:ringPulse 3s ease-in-out infinite;
+}
+
+@keyframes ringPulse{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 0 35px rgba(96,165,250,.25);
+  }
+
+  50%{
+    transform:scale(1.08);
+    box-shadow:0 0 65px rgba(124,108,255,.45);
+  }
+}
+
+
+/* mobile */
+
+@media(max-width:600px){
+  .gumiHero{
+    padding-top:20px;
+  }
+
+  .gumiQuote{
+    padding:40px 20px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+
+  <a class="brand" href="index.html">
+    Gumi <b>×</b> Poko
+  </a>
+
+  <div class="navlinks">
+    <a href="story.html">Our Story</a>
+    <a href="gumi.html">Gumi</a>
+    <a href="memories.html">Memories</a>
+    <a href="videos.html">Videos</a>
+    <a href="letter.html">Letter</a>
+    <a href="final.html">♡</a>
+  </div>
+
+</nav>
+
+
+<!-- SPARKLES -->
+
+<div id="sparkles"></div>
+
+<script>
+const s = document.getElementById('sparkles');
+
+for(let i = 0; i < 70; i++){
+
+  let x = document.createElement('span');
+
+  x.className =
+    'spark ' +
+    (Math.random() < 0.16 ? 'star' : '');
+
+  x.style.left =
+    Math.random() * 100 + 'vw';
+
+  x.style.top =
+    Math.random() * 110 + 'vh';
+
+  x.style.animationDuration =
+    (5 + Math.random() * 10) + 's';
+
+  x.style.animationDelay =
+    (-Math.random() * 12) + 's';
+
+  s.appendChild(x);
+}
+</script>
+
+
+<main class="container">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="section gumiHero">
+
+  <div class="sparkleRing">
+    💙
+  </div>
+
+  <div class="kicker">
+    02 · GUMI
+  </div>
+
+  <h2>
+    Things Poko notices<br>
+    about Gumi.
+  </h2>
+
+  <p class="lead" style="margin:auto;max-width:800px">
+
+    Not a “perfect girlfriend” checklist.
+
+    Just the tiny things that make you feel like
+    <b>you</b>.
+
+    The person Poko somehow ended up caring
+    about this much.
+
+  </p>
+
+</section>
+
+
+<!-- =========================
+     PHOTO GALLERY
+========================= -->
+
+<section class="section">
+
+  <div class="gallery">
+
+
+    <!-- PHOTO 1 -->
+
+    <figure class="pic gumiPhoto">
+
+      <img
+        src="assets/gumi-04.png"
+        alt="Gumi photo"
+      >
+
+      <div class="photoBadge">
+        ✦ sunshine
+      </div>
+
+      <figcaption class="label">
+        A little sunshine in a picture.
+      </figcaption>
+
+    </figure>
+
+
+    <!-- PHOTO 2 -->
+
+    <figure class="pic gumiPhoto">
+
+      <img
+        src="assets/gumi-05.jpeg"
+        alt="Gumi photo"
+      >
+
+      <div class="photoBadge">
+        ♡ favourite
+      </div>
+
+      <figcaption class="label">
+        The tiny moments I would still choose to keep.
+      </figcaption>
+
+    </figure>
+
+
+    <!-- PHOTO 3 -->
+
+    <figure class="pic gumiPhoto">
+
+      <img
+        src="assets/gumi-06.jpeg"
+        alt="Gumi photo"
+      >
+
+      <div class="photoBadge">
+        ✨ pretty
+      </div>
+
+      <figcaption class="label">
+        Pretty, but the person behind the picture matters more.
+      </figcaption>
+
+    </figure>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LOVE THINGS
+========================= -->
+
+<section class="section">
+
+  <div class="storyGrid">
+
+
+    <div class="glass card">
+
+      <div class="kicker">
+        THINGS I GENUINELY LOVE
+      </div>
+
+      <div class="timeline">
+
+
+        <div class="step loveCard">
+
+          <b>
+            Your random photos & videos.
+          </b>
+
+          <p>
+            You can send something completely random
+            and somehow my mood gets better just because
+            it's from you.
+          </p>
+
+        </div>
+
+
+        <div class="step loveCard">
+
+          <b>
+            When you sing. 🎵
+          </b>
+
+          <p>
+            I don't care if it's a perfect performance.
+            I just like hearing you.
+            That's it.
+          </p>
+
+        </div>
+
+
+        <div class="step loveCard">
+
+          <b>
+            “Khana kha liya, Poko?”
+          </b>
+
+          <p>
+            That sentence has an unfair amount
+            of power over me.
+          </p>
+
+        </div>
+
+
+        <div class="step loveCard">
+
+          <b>
+            When you worry about me.
+          </b>
+
+          <p>
+            You notice when I'm a little off.
+            You care.
+            And I don't take that for granted.
+          </p>
+
+        </div>
+
+
+        <div class="step loveCard">
+
+          <b>
+            Your creative side.
+          </b>
+
+          <p>
+            You have this little creative spark
+            that makes you different from the boring,
+            predictable version of people.
+          </p>
+
+        </div>
+
+
+        <div class="step loveCard">
+
+          <b>
+            Your soft heart. 💙
+          </b>
+
+          <p>
+            You can care about people even when
+            you know they've disappointed you.
+            That softness is one of the things
+            I admire.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- RIGHT CARD -->
+
+    <div class="glass card gumiQuote">
+
+      <div class="quote">
+
+        “Tu sohni ae.<br>
+
+        But honestly…
+
+        <br>
+
+        <span>
+          tera dil hor vi sohnaa ae.
+        </span>”
+
+      </div>
+
+
+      <p class="lead punjabi">
+
+        “ਮੈਨੂੰ ਤੇਰੀਆਂ cute ਗੱਲਾਂ ਪਸੰਦ ਨੇ,
+        ਤੇਰੀਆਂ songs ਪਸੰਦ ਨੇ,
+        ਤੇਰਾ care ਕਰਨਾ ਪਸੰਦ ਏ…
+        ਪਰ ਸਭ ਤੋਂ ਵੱਧ,
+        ਮੈਨੂੰ ਤੂੰ ਪਸੰਦ ਏਂ।”
+
+      </p>
+
+
+      <p class="lead">
+        And yes, I still have one official complaint:
+      </p>
+
+
+      <p
+        class="quote"
+        style="font-size:34px"
+      >
+        Please stop eating your nails. 😭
+      </p>
+
+
+      <p class="lead">
+        Poko has filed this complaint with love.
+      </p>
+
+
+      <button
+        class="loveButton"
+        onclick="sendLove()"
+      >
+        💙 Tap for Poko
+      </button>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LITTLE MESSAGE
+========================= -->
+
+<section class="section">
+
+  <div class="glass card" style="text-align:center">
+
+    <div class="kicker">
+      ONE LAST THING
+    </div>
+
+    <div class="quote">
+
+      Out of all the people<br>
+      I could have met…
+
+      <br>
+
+      <span>
+        I'm really glad it was you.
+      </span>
+
+    </div>
+
+    <p class="lead" style="margin:22px auto 0;max-width:700px">
+
+      And no, this isn't me saying you're perfect.
+
+      It's me saying you're <b>you</b> —
+      and somehow, that's the person Poko wants
+      to keep knowing.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="footerBig">
+    Gumi × Poko
+  </div>
+
+  <p class="muted">
+    31 August → 30 September · our first monthiversary
+  </p>
+
+  <p class="muted punjabi">
+    “ਇੱਕ ਮਹੀਨਾ ਹੋਇਆ ਏ…
+    ਪਰ ਕਹਾਣੀ ਹਾਲੇ ਬਹੁਤ ਲੰਮੀ ਏ।” ❤️
+  </p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   TAP FOR POKO
+========================= */
+
+function sendLove(){
+
+  const emojis = [
+    '💙',
+    '💜',
+    '💗',
+    '✨',
+    '💫',
+    '♡'
+  ];
+
+  for(let i = 0; i < 14; i++){
+
+    const heart =
+      document.createElement('div');
+
+    heart.className =
+      'floatingHeart';
+
+    heart.textContent =
+      emojis[Math.floor(
+        Math.random() * emojis.length
+      )];
+
+    heart.style.left =
+      (35 + Math.random() * 30) + 'vw';
+
+    heart.style.top =
+      (45 + Math.random() * 15) + 'vh';
+
+    heart.style.animationDelay =
+      (Math.random() * .5) + 's';
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4500);
+  }
+
+}
+
+</script>
+
+</body>
+</html>

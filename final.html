@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>For Gumi · Gumi × Poko</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================================
+   FINAL PAGE — CINEMATIC ENDING
+========================================= */
+
+.finalPage{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Big background glow */
+
+.finalPage::before{
+  content:"";
+  position:fixed;
+  width:700px;
+  height:700px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(37,99,235,.22),
+    rgba(124,108,255,.10),
+    transparent 70%
+  );
+  left:50%;
+  top:45%;
+  transform:translate(-50%,-50%);
+  animation:finalGlow 7s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+@keyframes finalGlow{
+
+  from{
+    transform:translate(-50%,-50%) scale(.9);
+    opacity:.6;
+  }
+
+  to{
+    transform:translate(-50%,-50%) scale(1.25);
+    opacity:1;
+  }
+
+}
+
+
+/* =========================================
+   FINAL CARD
+========================================= */
+
+.finalCard{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:85px 45px !important;
+
+  border:1px solid rgba(120,170,255,.25);
+
+  box-shadow:
+    0 40px 120px rgba(0,20,90,.5),
+    0 0 100px rgba(59,130,246,.12);
+
+  animation:cardAppear 1.3s ease both;
+}
+
+@keyframes cardAppear{
+
+  from{
+    opacity:0;
+    transform:translateY(35px) scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+
+}
+
+
+/* moving shine */
+
+.finalCard::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:700px;
+
+  top:-250px;
+  left:-350px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.13),
+    transparent
+  );
+
+  transform:rotate(25deg);
+
+  animation:shine 7s ease-in-out infinite;
+
+}
+
+@keyframes shine{
+
+  0%{
+    left:-350px;
+  }
+
+  45%,100%{
+    left:120%;
+  }
+
+}
+
+
+/* =========================================
+   KICKER
+========================================= */
+
+.finalKicker{
+
+  display:inline-flex;
+
+  padding:9px 16px;
+
+  border-radius:999px;
+
+  background:rgba(59,130,246,.12);
+
+  border:1px solid rgba(96,165,250,.25);
+
+  color:#9bc4ff;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  letter-spacing:.18em;
+
+  text-transform:uppercase;
+
+  margin-bottom:20px;
+
+}
+
+
+/* =========================================
+   MAIN TITLE
+========================================= */
+
+.finalTitle{
+
+  font-family:'Playfair Display',serif;
+
+  font-size:clamp(
+    55px,
+    9vw,
+    120px
+  );
+
+  line-height:.86;
+
+  letter-spacing:-.07em;
+
+  margin:0;
+
+  background:
+
+    linear-gradient(
+      110deg,
+      #60a5fa,
+      #818cf8,
+      #c084fc,
+      #ff7ab8,
+      #60a5fa
+    );
+
+  background-size:300% 300%;
+
+  -webkit-background-clip:text;
+
+  background-clip:text;
+
+  color:transparent;
+
+  animation:
+    gradientMove 6s ease infinite;
+
+}
+
+@keyframes gradientMove{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+
+}
+
+
+/* =========================================
+   SUBTEXT
+========================================= */
+
+.finalText{
+
+  max-width:760px;
+
+  margin:30px auto 0;
+
+  font-size:clamp(
+    17px,
+    2vw,
+    23px
+  );
+
+  line-height:1.7;
+
+  color:#c8d7f2;
+
+}
+
+
+/* =========================================
+   PUNJABI
+========================================= */
+
+.finalPunjabi{
+
+  margin-top:25px;
+
+  font-size:clamp(
+    17px,
+    2vw,
+    22px
+  );
+
+  line-height:1.8;
+
+  color:#b8cdf3;
+
+}
+
+
+/* =========================================
+   HEART
+========================================= */
+
+.finalHeart{
+
+  margin:35px auto;
+
+  width:80px;
+  height:80px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(255,100,180,.25),
+      rgba(59,130,246,.08)
+    );
+
+  border:1px solid rgba(255,255,255,.15);
+
+  font-size:38px;
+
+  animation:
+    heartbeat 1.8s ease-in-out infinite;
+
+  box-shadow:
+    0 0 35px rgba(255,80,170,.25);
+
+}
+
+@keyframes heartbeat{
+
+  0%,100%{
+    transform:scale(1);
+  }
+
+  15%{
+    transform:scale(1.15);
+  }
+
+  30%{
+    transform:scale(1);
+  }
+
+  45%{
+    transform:scale(1.12);
+  }
+
+  60%{
+    transform:scale(1);
+  }
+
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.finalButtons{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  margin-top:35px;
+
+}
+
+.finalBtn{
+
+  position:relative;
+
+  overflow:hidden;
+
+  display:inline-block;
+
+  text-decoration:none;
+
+  padding:15px 22px;
+
+  border-radius:999px;
+
+  font-weight:900;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      110deg,
+      #2563eb,
+      #7c3aed,
+      #ec4899
+    );
+
+  background-size:200% 200%;
+
+  animation:
+    buttonGradient 5s ease infinite;
+
+  box-shadow:
+    0 15px 35px rgba(37,99,235,.25);
+
+  transition:.3s ease;
+
+}
+
+@keyframes buttonGradient{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+
+}
+
+.finalBtn:hover{
+
+  transform:
+    translateY(-5px)
+    scale(1.04);
+
+  box-shadow:
+    0 20px 50px rgba(59,130,246,.35);
+
+}
+
+.finalBtn.alt{
+
+  color:#dce8ff;
+
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.18);
+
+  animation:none;
+
+}
+
+
+/* =========================================
+   SECRET MESSAGE
+========================================= */
+
+.secret{
+
+  margin-top:35px;
+
+  font-size:13px;
+
+  color:#8194b8;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+.secret:hover{
+
+  color:#b7ceff;
+
+}
+
+.secretMessage{
+
+  max-height:0;
+
+  opacity:0;
+
+  overflow:hidden;
+
+  transition:
+    max-height .7s ease,
+    opacity .5s ease;
+
+  margin-top:0;
+
+  color:#bcd1f4;
+
+  font-size:17px;
+
+  line-height:1.8;
+
+}
+
+.secretMessage.show{
+
+  max-height:200px;
+
+  opacity:1;
+
+  margin-top:20px;
+
+}
+
+
+/* =========================================
+   FLOATING PARTICLES
+========================================= */
+
+.finalParticle{
+
+  position:fixed;
+
+  bottom:-30px;
+
+  pointer-events:none;
+
+  z-index:-1;
+
+  opacity:0;
+
+  animation:
+    finalFloat linear forwards;
+
+}
+
+@keyframes finalFloat{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+      translateY(0)
+      scale(.4);
+
+  }
+
+  15%{
+
+    opacity:.8;
+
+  }
+
+  80%{
+
+    opacity:.5;
+
+  }
+
+  100%{
+
+    opacity:0;
+
+    transform:
+      translateY(-110vh)
+      translateX(100px)
+      scale(1.4);
+
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+  .finalCard{
+
+    padding:
+      60px 22px
+      !important;
+
+  }
+
+  .finalTitle{
+
+    font-size:58px;
+
+  }
+
+  .finalText{
+
+    font-size:17px;
+
+  }
+
+  .finalPunjabi{
+
+    font-size:16px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<nav class="nav">
+
+  <a class="brand" href="index.html">
+    Gumi <b>×</b> Poko
+  </a>
+
+  <div class="navlinks">
+
+    <a href="story.html">Our Story</a>
+
+    <a href="gumi.html">Gumi</a>
+
+    <a href="memories.html">Memories</a>
+
+    <a href="videos.html">Videos</a>
+
+    <a href="letter.html">Letter</a>
+
+    <a href="final.html">♡</a>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================================
+     SPARKLES
+========================================= -->
+
+<div id="sparkles"></div>
+
+
+<script>
+
+/* Existing sparkles */
+
+const s =
+  document.getElementById('sparkles');
+
+for(let i=0;i<70;i++){
+
+  let x =
+    document.createElement('span');
+
+  x.className =
+    'spark ' +
+    (Math.random()<.16
+      ? 'star'
+      : '');
+
+  x.style.left =
+    Math.random()*100+'vw';
+
+  x.style.top =
+    Math.random()*110+'vh';
+
+  x.style.animationDuration =
+    (5+Math.random()*10)+'s';
+
+  x.style.animationDelay =
+    (-Math.random()*12)+'s';
+
+  s.appendChild(x);
+
+}
+
+
+/* =========================================
+   FLOATING FINAL PARTICLES
+========================================= */
+
+const symbols = [
+  '♥',
+  '♡',
+  '✦',
+  '✧',
+  '·',
+  '💙',
+  '💜'
+];
+
+function createFinalParticle(){
+
+  const p =
+    document.createElement('div');
+
+  p.className =
+    'finalParticle';
+
+  p.innerHTML =
+    symbols[
+      Math.floor(
+        Math.random()*symbols.length
+      )
+    ];
+
+  p.style.left =
+    Math.random()*100+'vw';
+
+  p.style.fontSize =
+    (10+Math.random()*20)+'px';
+
+  p.style.animationDuration =
+    (8+Math.random()*9)+'s';
+
+  document.body.appendChild(p);
+
+  setTimeout(()=>{
+
+    p.remove();
+
+  },18000);
+
+}
+
+setInterval(
+  createFinalParticle,
+  650
+);
+
+
+/* =========================================
+   SECRET MESSAGE
+========================================= */
+
+function revealMessage(){
+
+  const message =
+    document.getElementById(
+      'secretMessage'
+    );
+
+  message.classList.toggle(
+    'show'
+  );
+
+}
+
+</script>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container finalPage">
+
+<section
+  class="section"
+  style="width:100%;padding-top:110px"
+>
+
+
+<div class="glass finalCard">
+
+
+<div class="finalKicker">
+  ✦ End of chapter one ✦
+</div>
+
+
+<h1 class="finalTitle">
+
+  Gumi,<br>
+  don't forget Poko.
+
+</h1>
+
+
+<div class="finalHeart">
+  ♥
+</div>
+
+
+<p class="finalText">
+
+  One month isn't the whole story.
+
+  <br>
+
+  It's just the first page
+  that we actually got to write together.
+
+</p>
+
+
+<p class="finalPunjabi punjabi">
+
+  “ਇੱਕ ਮਹੀਨਾ ਹੋ ਗਿਆ…
+  ਹੁਣ ਅੱਗੇ ਦੀ ਕਹਾਣੀ
+  ਤੂੰ ਤੇ ਮੈਂ ਮਿਲ ਕੇ ਲਿਖਾਂਗੇ।” ❤️
+
+</p>
+
+
+<div class="finalButtons">
+
+
+<a
+  class="finalBtn"
+  href="letter.html"
+>
+  💌 Read the letter again
+</a>
+
+
+<a
+  class="finalBtn alt"
+  href="index.html"
+>
+  ↩ Start from the beginning
+</a>
+
+
+</div>
+
+
+<!-- Secret clickable message -->
+
+<div
+  class="secret"
+  onclick="revealMessage()"
+>
+  ✦ one last thing… tap here ✦
+</div>
+
+
+<div
+  id="secretMessage"
+  class="secretMessage"
+>
+
+  If you're reading this at the end,
+  then you made it through the whole little world
+  Poko made for you.
+
+  <br><br>
+
+  And honestly…
+
+  <b>
+    this website was never really about
+    the website.
+
+  </b>
+
+  <br><br>
+
+  It was just Poko's slightly crazy way
+  of saying:
+
+  <br>
+
+  <b>
+    “I'm really, really glad I found you.” ❤️
+  </b>
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="footerBig">
+    Gumi × Poko
+  </div>
+
+  <p class="muted">
+    31 August → 30 September ·
+    our first monthiversary
+  </p>
+
+  <p class="muted punjabi">
+    “ਇੱਕ ਮਹੀਨਾ ਹੋਇਆ ਏ…
+    ਪਰ ਕਹਾਣੀ ਹਾਲੇ ਬਹੁਤ ਲੰਮੀ ਏ।” ❤️
+  </p>
+
+</footer>
+
+
+</body>
+</html>

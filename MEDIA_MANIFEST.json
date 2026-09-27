@@ -1,0 +1,66 @@
+{
+  "photos": [
+    "gumi-01.jpeg",
+    "gumi-02.png",
+    "gumi-03.png",
+    "gumi-04.png",
+    "gumi-05.jpeg",
+    "gumi-06.jpeg",
+    "gumi-07.jpeg",
+    "gumi-09.jpg",
+    "gumi-childhood.jpg"
+  ],
+  "videos": [
+    "poko-first.mp4",
+    "greedymon.mp4",
+    "crying.mp4",
+    "song-01.mp4",
+    "song-02.mp4",
+    "cute-01.mp4",
+    "random-01.mp4",
+    "random-02.mp4"
+  ],
+  "video_mapping": {
+    "poko-first.mp4": {
+      "title": "The first \u201cPoko\u201d",
+      "source": "/mnt/data/video_20260902_025819.mp4",
+      "tag": "Poko origin"
+    },
+    "greedymon.mp4": {
+      "title": "GreedyMon\u2122",
+      "source": "/mnt/data/Screenrecording_20260922_231229.mp4",
+      "tag": "Kissy"
+    },
+    "crying.mp4": {
+      "title": "The softest Gumi",
+      "source": "/mnt/data/video_20260920_233158_edit.mp4",
+      "tag": "Soft moment"
+    },
+    "song-01.mp4": {
+      "title": "Song #1",
+      "source": "/mnt/data/video_20260901_001338_edit.mp4",
+      "tag": "Her songs"
+    },
+    "song-02.mp4": {
+      "title": "Song #2",
+      "source": "/mnt/data/video_20260911_225750_edit.mp4",
+      "tag": "Her songs"
+    },
+    "cute-01.mp4": {
+      "title": "Just being Gumi",
+      "source": "/mnt/data/1000444725.mp4",
+      "tag": "Little moment"
+    },
+    "random-01.mp4": {
+      "title": "A random Gumi moment",
+      "source": "/mnt/data/video_20260924_015533_edit.mp4",
+      "tag": "Random"
+    },
+    "random-02.mp4": {
+      "title": "Another little moment",
+      "source": "/mnt/data/Screenrecording_20260922_215055.mp4",
+      "tag": "Random"
+    }
+  },
+  "duplicate_policy": "Every photo and video is used exactly once in the HTML pages."
+}

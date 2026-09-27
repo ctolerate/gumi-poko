@@ -1,0 +1,1023 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Memories · Gumi × Poko</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================================
+   MEMORIES PAGE
+========================================= */
+
+.memoryHero{
+  text-align:center;
+  padding:45px 0 55px;
+}
+
+.memoryHero h2{
+  font-size:clamp(48px,7vw,90px);
+
+  background:
+    linear-gradient(
+      100deg,
+      #60a5fa,
+      #7c6cff,
+      #ff6fb5,
+      #ffd76a,
+      #60a5fa
+    );
+
+  background-size:400% 400%;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  animation:memoryGradient 9s ease infinite;
+}
+
+@keyframes memoryGradient{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+
+}
+
+
+/* =========================================
+   MEMORY PHOTOS
+========================================= */
+
+.memoryPhoto{
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.memoryPhoto img{
+  transition:
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    filter .6s ease;
+}
+
+.memoryPhoto:hover img{
+  transform:scale(1.09) rotate(.5deg);
+  filter:
+    brightness(1.06)
+    saturate(1.18);
+}
+
+
+/* shine sweep */
+
+.memoryPhoto:after{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  bottom:0;
+
+  width:45%;
+
+  left:-70%;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent,
+      rgba(255,255,255,.45),
+      transparent
+    );
+
+  transform:skewX(-20deg);
+
+  transition:1s;
+
+  pointer-events:none;
+}
+
+.memoryPhoto:hover:after{
+  left:130%;
+}
+
+
+/* floating badge */
+
+.memoryBadge{
+
+  position:absolute;
+
+  top:14px;
+  right:14px;
+
+  z-index:5;
+
+  padding:8px 12px;
+
+  border-radius:999px;
+
+  color:white;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  background:
+    rgba(2,6,23,.58);
+
+  border:
+    1px solid
+    rgba(255,255,255,.25);
+
+  backdrop-filter:blur(12px);
+
+}
+
+
+/* =========================================
+   MEMORY CARDS
+========================================= */
+
+.memoryStep{
+
+  position:relative;
+
+  overflow:hidden;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+
+}
+
+.memoryStep:hover{
+
+  transform:
+    translateY(-7px)
+    scale(1.01);
+
+  box-shadow:
+    0 25px 65px
+    rgba(20,60,150,.28);
+
+}
+
+.memoryStep:before{
+
+  content:"";
+
+  position:absolute;
+
+  width:140px;
+  height:140px;
+
+  right:-70px;
+  top:-70px;
+
+  border-radius:50%;
+
+  background:
+    rgba(96,165,250,.15);
+
+  filter:blur(5px);
+
+}
+
+
+/* =========================================
+   BIG QUOTE
+========================================= */
+
+.memoryQuote{
+
+  padding:55px 30px;
+
+  text-align:center;
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+.memoryQuote:before{
+
+  content:"♡";
+
+  position:absolute;
+
+  font-size:260px;
+
+  right:-45px;
+  bottom:-100px;
+
+  color:
+    rgba(96,165,250,.08);
+
+  transform:rotate(-15deg);
+
+}
+
+
+.memoryQuote .quote{
+  position:relative;
+  z-index:2;
+}
+
+
+/* =========================================
+   MEMORY COUNTER
+========================================= */
+
+.memoryCounter{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:14px;
+
+  flex-wrap:wrap;
+
+  margin-top:30px;
+
+}
+
+.counterBox{
+
+  min-width:120px;
+
+  padding:18px 22px;
+
+  text-align:center;
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,.09);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+    0 15px 40px
+    rgba(0,20,80,.22);
+
+}
+
+.counterNumber{
+
+  font-size:30px;
+
+  font-weight:950;
+
+  background:
+    linear-gradient(
+      100deg,
+      #60a5fa,
+      #ff6fb6
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+}
+
+.counterLabel{
+
+  font-size:11px;
+
+  font-weight:800;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+
+  letter-spacing:.12em;
+
+}
+
+
+/* =========================================
+   LOVE BUTTON
+========================================= */
+
+.memoryButton{
+
+  border:0;
+
+  cursor:pointer;
+
+  color:white;
+
+  font-family:inherit;
+
+  font-weight:900;
+
+  font-size:15px;
+
+  padding:14px 22px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      100deg,
+      #173b9c,
+      #7c6cff,
+      #ff6fb5
+    );
+
+  box-shadow:
+    0 15px 45px
+    rgba(23,59,156,.35);
+
+  transition:.3s;
+
+}
+
+.memoryButton:hover{
+
+  transform:
+    translateY(-4px)
+    scale(1.03);
+
+  box-shadow:
+    0 20px 55px
+    rgba(255,111,181,.4);
+
+}
+
+.memoryButton:active{
+  transform:scale(.95);
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+.memoryHeart{
+
+  position:fixed;
+
+  pointer-events:none;
+
+  z-index:100;
+
+  font-size:22px;
+
+  animation:
+    memoryFloat
+    4s
+    linear
+    forwards;
+
+  filter:
+    drop-shadow(
+      0 0 10px
+      rgba(255,111,181,.8)
+    );
+
+}
+
+@keyframes memoryFloat{
+
+  0%{
+    opacity:0;
+    transform:
+      translateY(20px)
+      scale(.5)
+      rotate(0deg);
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translateY(-220px)
+      scale(1.5)
+      rotate(25deg);
+  }
+
+}
+
+
+/* =========================================
+   LITTLE MEMORY LINE
+========================================= */
+
+.memoryLine{
+
+  width:100%;
+
+  height:1px;
+
+  margin:55px 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(96,165,250,.55),
+      rgba(255,111,181,.55),
+      transparent
+    );
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .memoryHero{
+    padding-top:20px;
+  }
+
+  .memoryQuote{
+    padding:40px 20px;
+  }
+
+  .counterBox{
+    min-width:100px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAV
+========================================= -->
+
+<nav class="nav">
+
+  <a class="brand" href="index.html">
+    Gumi <b>×</b> Poko
+  </a>
+
+  <div class="navlinks">
+
+    <a href="story.html">Our Story</a>
+
+    <a href="gumi.html">Gumi</a>
+
+    <a href="memories.html">Memories</a>
+
+    <a href="videos.html">Videos</a>
+
+    <a href="letter.html">Letter</a>
+
+    <a href="final.html">♡</a>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================================
+     SPARKLES
+========================================= -->
+
+<div id="sparkles"></div>
+
+<script>
+
+const s =
+  document.getElementById('sparkles');
+
+for(let i = 0; i < 70; i++){
+
+  let x =
+    document.createElement('span');
+
+  x.className =
+    'spark ' +
+    (Math.random() < .16
+      ? 'star'
+      : '');
+
+  x.style.left =
+    Math.random() * 100 + 'vw';
+
+  x.style.top =
+    Math.random() * 110 + 'vh';
+
+  x.style.animationDuration =
+    (5 + Math.random() * 10) + 's';
+
+  x.style.animationDelay =
+    (-Math.random() * 12) + 's';
+
+  s.appendChild(x);
+
+}
+
+</script>
+
+
+<main class="container">
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="section memoryHero">
+
+  <div class="kicker">
+    03 · MEMORIES
+  </div>
+
+  <h2>
+    The tiny things<br>
+    that became ours.
+  </h2>
+
+  <p
+    class="lead"
+    style="margin:auto;max-width:800px"
+  >
+
+    This page is deliberately a little chaotic —
+    because real relationships aren't made from
+    perfectly staged moments.
+
+    They're made from random pictures,
+    stupid jokes, tiny phrases,
+    late-night conversations
+    and things that only two people understand.
+
+  </p>
+
+
+  <div class="memoryCounter">
+
+    <div class="counterBox">
+
+      <div class="counterNumber">
+        ∞
+      </div>
+
+      <div class="counterLabel">
+        Little moments
+      </div>
+
+    </div>
+
+
+    <div class="counterBox">
+
+      <div class="counterNumber">
+        2
+      </div>
+
+      <div class="counterLabel">
+        Weird nicknames
+      </div>
+
+    </div>
+
+
+    <div class="counterBox">
+
+      <div class="counterNumber">
+        1
+      </div>
+
+      <div class="counterLabel">
+        Us
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================
+     PHOTO GALLERY
+========================================= -->
+
+<section class="section">
+
+  <div class="gallery">
+
+
+    <!-- PHOTO 1 -->
+
+    <figure class="pic memoryPhoto">
+
+      <img
+        src="assets/gumi-07.jpeg"
+        alt="Gumi photo"
+      >
+
+      <div class="memoryBadge">
+        ✦ another Gumi
+      </div>
+
+      <figcaption class="label">
+        Another version of my favourite person.
+      </figcaption>
+
+    </figure>
+
+
+    <!-- PHOTO 2 -->
+
+    <figure class="pic memoryPhoto">
+
+      <img
+        src="assets/gumi-03.png"
+        alt="Gumi photo"
+      >
+
+      <div class="memoryBadge">
+        ♡ favourite
+      </div>
+
+      <figcaption class="label">
+        A face I could probably recognise anywhere.
+      </figcaption>
+
+    </figure>
+
+
+    <!-- PHOTO 3 -->
+
+    <figure class="pic memoryPhoto">
+
+      <img
+        src="assets/gumi-childhood.jpg"
+        alt="Gumi childhood photo"
+      >
+
+      <div class="memoryBadge">
+        🥹 little Gumi
+      </div>
+
+      <figcaption class="label">
+        Before Gumi was Gumi — little her. ❤️
+      </figcaption>
+
+    </figure>
+
+
+  </div>
+
+</section>
+
+
+<div class="memoryLine"></div>
+
+
+<!-- =========================================
+     LITTLE THINGS
+========================================= -->
+
+<section class="section">
+
+  <div class="glass card">
+
+    <div class="kicker">
+      LITTLE THINGS I WOULD REMEMBER
+    </div>
+
+
+    <div class="storyGrid">
+
+
+      <!-- LEFT -->
+
+      <div>
+
+        <div class="timeline">
+
+
+          <div class="step memoryStep">
+
+            <b>
+              “Gumi.”
+            </b>
+
+            <p>
+              From “Gumnam” to the name that now
+              means one very specific person to Poko.
+            </p>
+
+          </div>
+
+
+          <div class="step memoryStep">
+
+            <b>
+              “Poko.”
+            </b>
+
+            <p>
+              A name you gave me.
+              And somehow I like hearing it from you
+              more than almost anyone else.
+            </p>
+
+          </div>
+
+
+          <div class="step memoryStep">
+
+            <b>
+              GreedyMon™
+            </b>
+
+            <p>
+              I ask for too many kisses.
+              You noticed.
+              I refuse to apologise. 😭💋
+            </p>
+
+          </div>
+
+
+          <div class="step memoryStep">
+
+            <b>
+              “Mera bacha.”
+            </b>
+
+            <p>
+              Small phrase.
+              Massive effect.
+            </p>
+
+          </div>
+
+
+          <div class="step memoryStep">
+
+            <b>
+              “Paani piyo.”
+            </b>
+
+            <p>
+              My most repeated reminder to you.
+              Yes, I know I say it too much. 😭
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT -->
+
+      <div class="memoryQuote">
+
+        <div class="quote">
+
+          “Some people become memories.
+
+          <br>
+
+          <span>
+            You became my everyday.
+          </span>”
+
+        </div>
+
+
+        <p
+          class="lead punjabi"
+          style="margin-top:22px"
+        >
+
+          “ਤੂੰ ਮੇਰੀ ਜ਼ਿੰਦਗੀ ਦੀ ਕੋਈ ਵੱਡੀ
+          dramatic entry ਨਹੀਂ ਸੀ…
+
+          ਤੂੰ ਇੱਕ random ਗੱਲਬਾਤ ਸੀ,
+          ਜੋ ਹੌਲੀ ਹੌਲੀ ਮੇਰੀ favourite
+          ਚੀਜ਼ ਬਣ ਗਈ।”
+
+        </p>
+
+
+        <p class="lead">
+
+          And that's what makes the first month
+          special to me.
+
+          Not because one month is some huge number.
+
+          Because inside that one month,
+          you somehow became part of
+          so many ordinary moments.
+
+        </p>
+
+
+        <button
+          class="memoryButton"
+          onclick="dropMemories()"
+        >
+          💙 Make a little mess
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================
+     FINAL MEMORY CARD
+========================================= -->
+
+<section class="section">
+
+  <div class="glass card memoryQuote">
+
+    <div class="kicker">
+      IF I COULD SAVE ONE THING
+    </div>
+
+    <div class="quote">
+
+      Not one picture.
+
+      <br>
+
+      Not one conversation.
+
+      <br>
+
+      <span>
+        Just the feeling of having you.
+      </span>
+
+    </div>
+
+    <p
+      class="lead"
+      style="margin:25px auto 0;max-width:720px"
+    >
+
+      That's probably the memory I would keep.
+
+      Because pictures change,
+      conversations get forgotten,
+      days move on…
+
+      but somehow,
+      this little chapter became ours.
+
+    </p>
+
+    <p
+      class="lead punjabi"
+      style="margin-top:20px"
+    >
+
+      “ਤਸਵੀਰਾਂ ਤਾਂ ਬਹੁਤ ਨੇ…
+      ਪਰ ਮੇਰੇ ਲਈ ਸਭ ਤੋਂ ਸੋਹਣੀ ਯਾਦ
+      ਤੂੰ ਆਪ ਏਂ।” ❤️
+
+    </p>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+  <div class="footerBig">
+    Gumi × Poko
+  </div>
+
+  <p class="muted">
+    31 August → 30 September · our first monthiversary
+  </p>
+
+  <p class="muted punjabi">
+    “ਇੱਕ ਮਹੀਨਾ ਹੋਇਆ ਏ…
+    ਪਰ ਕਹਾਣੀ ਹਾਲੇ ਬਹੁਤ ਲੰਮੀ ਏ।” ❤️
+  </p>
+
+</footer>
+
+
+<!-- =========================================
+     MEMORY EFFECT
+========================================= -->
+
+<script>
+
+function dropMemories(){
+
+  const emojis = [
+    '💙',
+    '💜',
+    '💗',
+    '💖',
+    '✨',
+    '💫',
+    '♡',
+    '⭐'
+  ];
+
+
+  for(let i = 0; i < 20; i++){
+
+    const heart =
+      document.createElement('div');
+
+    heart.className =
+      'memoryHeart';
+
+    heart.textContent =
+      emojis[
+        Math.floor(
+          Math.random() * emojis.length
+        )
+      ];
+
+
+    heart.style.left =
+      (20 + Math.random() * 60) + 'vw';
+
+
+    heart.style.top =
+      (45 + Math.random() * 20) + 'vh';
+
+
+    heart.style.animationDelay =
+      (Math.random() * .8) + 's';
+
+
+    document.body.appendChild(
+      heart
+    );
+
+
+    setTimeout(() => {
+
+      heart.remove();
+
+    }, 4500);
+
+  }
+
+}
+
+</script>
+
+
+</body>
+</html>

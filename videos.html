@@ -1,0 +1,409 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Videos · Gumi × Poko</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="nav">
+  <a class="brand" href="index.html">Gumi <b>×</b> Poko</a>
+
+  <div class="navlinks">
+    <a href="story.html">Our Story</a>
+    <a href="gumi.html">Gumi</a>
+    <a href="memories.html">Memories</a>
+    <a href="videos.html">Videos</a>
+    <a href="letter.html">Letter</a>
+    <a href="final.html">♡</a>
+  </div>
+</nav>
+
+<div id="sparkles"></div>
+
+<script>
+const s = document.getElementById('sparkles');
+
+for(let i = 0; i < 70; i++){
+  let x = document.createElement('span');
+
+  x.className = 'spark ' + (Math.random() < 0.16 ? 'star' : '');
+
+  x.style.left = Math.random() * 100 + 'vw';
+  x.style.top = Math.random() * 110 + 'vh';
+  x.style.animationDuration = (5 + Math.random() * 10) + 's';
+  x.style.animationDelay = (-Math.random() * 12) + 's';
+
+  s.appendChild(x);
+}
+</script>
+
+
+<main class="container">
+
+<section class="section">
+
+  <div class="sectionHead">
+
+    <div class="kicker">04 · Videos</div>
+
+    <h2>
+      Every clip has<br>
+      its own place.
+    </h2>
+
+    <p class="lead">
+      This time there is no guessing game.
+      There is <b>one song video</b> here.
+      The other clip is the “Hi, kitni pyari lag rahi hoon”
+      moment with her friends talking in the background.
+      The GreedyMon clip is the actual kissy/screen-recording moment.
+      The crying video stays emotional.
+      And the first Poko clip stays where it belongs:
+      at the beginning of the story.
+    </p>
+
+  </div>
+
+
+  <div class="twoSongs">
+
+    <h3>🎵 One song. One little Gumi moment.</h3>
+
+    <p class="muted">
+      And the other special clip is the
+      “Hi, kitni pyari lag rahi hoon” moment —
+      not a song.
+    </p>
+
+  </div>
+
+
+  <div class="videoGrid" style="margin-top:20px">
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 01 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/poko-first.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Poko origin · 1
+        </div>
+
+        <h3>
+          The first “Poko”
+        </h3>
+
+        <p>
+          The clip where that little name became part of us.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 02 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/greedymon.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Little moment · 2
+        </div>
+
+        <h3>
+          Just being Gumi
+        </h3>
+
+        <p>
+          A small, ordinary clip that somehow still feels worth saving.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 03 -->
+    <!-- VIDEO SWAPPED WITH 05 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/song-01.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Tiny Gumi moment · 3
+        </div>
+
+        <h3>
+          “Hi, kitni pyari lag rahi hoon”
+        </h3>
+
+        <p>
+          Not a song. Her friends are talking in the background,
+          and then Gumi says that ridiculously cute little
+          “Hi…” at the end. 🥹
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 04 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/crying.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Soft moment · 4
+        </div>
+
+        <h3>
+          The softest Gumi
+        </h3>
+
+        <p>
+          A vulnerable little moment.
+          Poko does not need you to hide these parts of yourself.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 05 -->
+    <!-- VIDEO SWAPPED WITH 03 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/song-02.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Her song · 5
+        </div>
+
+        <h3>
+          The song I love hearing
+        </h3>
+
+        <p>
+          There is only one song clip here.
+          Just Gumi singing, and Poko being very happy about it. 🎵
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 06 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/cute-01.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Kissy · 6
+        </div>
+
+        <h3>
+          GreedyMon™
+        </h3>
+
+        <p>
+          One of those kissy moments that explains exactly why
+          Poko keeps asking for “one more”. 😭💋
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 07 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/random-01.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Random · 7
+        </div>
+
+        <h3>
+          A random Gumi moment
+        </h3>
+
+        <p>
+          No big occasion.
+          Just another tiny piece of her life that Poko gets to keep.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <!-- ========================= -->
+    <!-- VIDEO 08 -->
+    <!-- ========================= -->
+
+    <article class="videoCard">
+
+      <div class="videoBox">
+
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          src="assets/random-02.mp4">
+        </video>
+
+      </div>
+
+      <div class="videoMeta">
+
+        <div class="tag">
+          Random · 8
+        </div>
+
+        <h3>
+          Another little moment
+        </h3>
+
+        <p>
+          The kind of thing that would be forgettable to someone else
+          and memorable to Poko.
+        </p>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="footerBig">
+    Gumi × Poko
+  </div>
+
+  <p class="muted">
+    31 August → 30 September · our first monthiversary
+  </p>
+
+  <p class="muted punjabi">
+    “ਇੱਕ ਮਹੀਨਾ ਹੋਇਆ ਏ… ਪਰ ਕਹਾਣੀ ਹਾਲੇ ਬਹੁਤ ਲੰਮੀ ਏ।” ❤️
+  </p>
+
+</footer>
+
+</body>
+</html>
