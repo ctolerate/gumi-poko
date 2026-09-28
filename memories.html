@@ -20,6 +20,19 @@ href="style.css">
 
 
 <!-- =========================
+     MUSIC
+========================= -->
+
+<audio id="loveSong" preload="auto">
+
+  <source
+    src="assets/i-think-they-call-this-love.mp3"
+    type="audio/mpeg">
+
+</audio>
+
+
+<!-- =========================
      NAVIGATION
 ========================= -->
 
@@ -437,6 +450,279 @@ for(let i = 0; i < 70; i++){
 
 
 </footer>
+
+
+<!-- =========================
+     BOTTOM RIGHT SONG PLAYER
+========================= -->
+
+<div
+  class="songPlayer"
+  id="songPlayer"
+>
+
+  <button
+    id="songButton"
+    class="songButton"
+    type="button"
+  >
+
+    <span id="songIcon">
+      ▶
+    </span>
+
+    <span id="songText">
+      Play Our Song
+    </span>
+
+    <span class="songHeart">
+      ♡
+    </span>
+
+  </button>
+
+</div>
+
+
+<!-- =========================
+     PERSISTENT SONG CONTROLLER
+========================= -->
+
+<script>
+
+const loveSong =
+  document.getElementById("loveSong");
+
+const songButton =
+  document.getElementById("songButton");
+
+const songIcon =
+  document.getElementById("songIcon");
+
+const songText =
+  document.getElementById("songText");
+
+
+const SONG_TIME_KEY =
+  "gumiPokoSongTime";
+
+const SONG_PLAYING_KEY =
+  "gumiPokoSongPlaying";
+
+
+/* =========================
+   RESTORE SONG POSITION
+========================= */
+
+loveSong.addEventListener(
+  "loadedmetadata",
+  function(){
+
+    const savedTime =
+      parseFloat(
+        localStorage.getItem(
+          SONG_TIME_KEY
+        )
+      );
+
+
+    if(
+      Number.isFinite(savedTime) &&
+      savedTime > 0 &&
+      savedTime < loveSong.duration
+    ){
+
+      loveSong.currentTime =
+        savedTime;
+
+    }
+
+  }
+);
+
+
+/* =========================
+   UPDATE PLAYER
+========================= */
+
+function updateSongUI(){
+
+  if(loveSong.paused){
+
+    songIcon.textContent =
+      "▶";
+
+    songText.textContent =
+      "Play Our Song";
+
+    songButton.classList.remove(
+      "playing"
+    );
+
+  }
+
+  else{
+
+    songIcon.textContent =
+      "❚❚";
+
+    songText.textContent =
+      "Pause Our Song";
+
+    songButton.classList.add(
+      "playing"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SAVE SONG STATE
+========================= */
+
+function saveSongState(){
+
+  localStorage.setItem(
+    SONG_TIME_KEY,
+    String(
+      loveSong.currentTime || 0
+    )
+  );
+
+
+  localStorage.setItem(
+    SONG_PLAYING_KEY,
+    loveSong.paused
+      ? "false"
+      : "true"
+  );
+
+}
+
+
+/* =========================
+   PLAY / PAUSE
+========================= */
+
+songButton.addEventListener(
+  "click",
+  async function(){
+
+    try{
+
+      if(loveSong.paused){
+
+        await loveSong.play();
+
+      }
+
+      else{
+
+        loveSong.pause();
+
+      }
+
+      updateSongUI();
+
+    }
+
+    catch(error){
+
+      console.error(
+        "Song could not play:",
+        error
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   AUDIO EVENTS
+========================= */
+
+loveSong.addEventListener(
+  "play",
+  function(){
+
+    localStorage.setItem(
+      SONG_PLAYING_KEY,
+      "true"
+    );
+
+    updateSongUI();
+
+  }
+);
+
+
+loveSong.addEventListener(
+  "pause",
+  function(){
+
+    saveSongState();
+
+    updateSongUI();
+
+  }
+);
+
+
+/* Save every second */
+
+setInterval(
+  saveSongState,
+  1000
+);
+
+
+/* Save before leaving */
+
+window.addEventListener(
+  "pagehide",
+  saveSongState
+);
+
+
+window.addEventListener(
+  "beforeunload",
+  saveSongState
+);
+
+
+/* =========================
+   SONG FINISHED
+========================= */
+
+loveSong.addEventListener(
+  "ended",
+  function(){
+
+    localStorage.setItem(
+      SONG_TIME_KEY,
+      "0"
+    );
+
+    localStorage.setItem(
+      SONG_PLAYING_KEY,
+      "false"
+    );
+
+    updateSongUI();
+
+  }
+);
+
+
+/* Initial state */
+
+updateSongUI();
+
+</script>
 
 
 </body>

@@ -2,666 +2,199 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Gumi × Poko · First Monthiversary</title>
+<meta charset="utf-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Gumi × Poko</title>
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+html,
+body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+body{
+  background:#050817;
+}
+
+/* =========================
+   PERSISTENT MUSIC PLAYER
+========================= */
+
+#persistentMusic{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:999999;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(150,190,255,.28);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(70,100,180,.35),
+      rgba(20,25,60,.85)
+    );
+
+  color:white;
+
+  display:grid;
+  place-items:center;
+
+  font-size:21px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.45),
+    0 0 30px rgba(80,130,255,.16);
+
+  backdrop-filter:blur(15px);
+
+  transition:.25s ease;
+}
+
+#persistentMusic:hover{
+  transform:scale(1.08);
+}
+
+#persistentMusic.playing{
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.45),
+    0 0 45px rgba(100,150,255,.35);
+}
+
+/* =========================
+   PAGE FRAME
+========================= */
+
+#pageFrame{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  #persistentMusic{
+    width:52px;
+    height:52px;
+
+    right:14px;
+    bottom:14px;
+
+    font-size:19px;
+  }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
-     ONE SINGLE AUDIO
-========================= -->
 
-<audio id="loveSong" preload="auto">
+<!-- =====================================================
+     PERSISTENT AUDIO
+===================================================== -->
+
+<audio
+  id="loveSong"
+  preload="auto"
+>
+
   <source
     src="assets/i-think-they-call-this-love.mp3"
     type="audio/mpeg"
   >
+
 </audio>
 
 
-<!-- =========================
-     LOVE INTRO
-========================= -->
-
-<div id="loveIntro">
-
-  <div class="loveIntroGlow"></div>
-
-  <div class="loveIntroContent">
-
-    <div class="loveIntroHeart">
-      ♥
-    </div>
-
-    <div class="loveIntroSmall">
-      Gumi × Poko
-    </div>
-
-    <h1>
-      I Think They<br>
-      <span>Call This Love.</span>
-    </h1>
-
-    <p class="loveIntroText">
-      One random conversation.
-      One unexpected person.
-      One little love story.
-    </p>
-
-    <button id="loveStart" type="button">
-      <span>▶</span>
-      Play Our Song
-    </button>
-
-    <div class="loveIntroHint">
-      headphones recommended ♡
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<nav class="nav">
-
-  <a class="brand" href="index.html">
-    Gumi <b>×</b> Poko
-  </a>
-
-  <div class="navlinks">
-
-    <a href="story.html">Our Story</a>
-
-    <a href="gumi.html">Gumi</a>
-
-    <a href="memories.html">Memories</a>
-
-    <a href="videos.html">Videos</a>
-
-    <a href="letter.html">Letter</a>
-
-    <a href="final.html">♡</a>
-
-  </div>
-
-</nav>
-
-
-<!-- =========================
-     FLOATING SPARKLES
-========================= -->
-
-<div id="sparkles"></div>
-
-<script>
-
-const sparkleContainer =
-document.getElementById("sparkles");
-
-for(let i = 0; i < 90; i++){
-
-  const sparkle =
-  document.createElement("span");
-
-  sparkle.className =
-  "spark " +
-  (Math.random() < 0.18 ? "star" : "");
-
-  sparkle.style.left =
-  Math.random() * 100 + "vw";
-
-  sparkle.style.top =
-  Math.random() * 110 + "vh";
-
-  sparkle.style.animationDuration =
-  (5 + Math.random() * 10) + "s";
-
-  sparkle.style.animationDelay =
-  (-Math.random() * 12) + "s";
-
-  sparkleContainer.appendChild(
-    sparkle
-  );
-
-}
-
-</script>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="container">
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-  <div class="heroGrid">
-
-    <div>
-
-      <div class="eyebrow">
-        30 September · our first monthiversary
-      </div>
-
-      <h1>
-        Gumi,<br>
-        this is us.
-      </h1>
-
-      <p class="heroLead">
-
-        Ek random AirTalk conversation.
-        A crazy day.
-        A lizard falling from a balcony.
-        Internet problems.
-        Google Meet at 4 AM.
-
-        “Gumnam.”
-
-        Then Gumi.
-
-        Then somehow…
-
-        <b>Poko.</b> ❤️
-
-      </p>
-
-      <p class="heroLead punjabi">
-
-        “ਸੋਚਿਆ ਨਹੀਂ ਸੀ ਕਿ ਇੱਕ random ਗੱਲਬਾਤ
-        ਮੇਰੀ ਜ਼ਿੰਦਗੀ ਦੀ ਇੰਨੀ ਸੋਹਣੀ ਗੱਲ ਬਣ ਜਾਏਗੀ।”
-
-      </p>
-
-      <div class="heroBtns">
-
-        <a class="btn" href="story.html">
-          Start our story →
-        </a>
-
-        <a class="btn alt" href="letter.html">
-          A letter for Gumi
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <!-- HERO PHOTOS -->
-
-    <div class="heroPhotos">
-
-      <div class="tape"></div>
-
-      <div class="polaroid p1">
-
-        <img
-          src="assets/gumi-01.jpeg"
-          alt="Gumi"
-        >
-
-      </div>
-
-      <div class="polaroid p2">
-
-        <img
-          src="assets/gumi-02.png"
-          alt="Gumi"
-        >
-
-      </div>
-
-      <div class="polaroid p3">
-
-        <img
-          src="assets/gumi-03.png"
-          alt="Gumi"
-        >
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
 <!-- =====================================================
-     ANIME KISS SECTION
+     MUSIC BUTTON
 ===================================================== -->
 
-<section class="section">
-
-  <div class="animeKiss">
-
-    <div class="animeTitle">
-      A tiny Gumi × Poko moment 💙
-    </div>
-
-    <div class="animeScene">
-
-      <div class="animeBoy"></div>
-
-      <div class="animeGirl"></div>
-
-      <div class="kissHeart">
-        ♥
-      </div>
-
-    </div>
-
-    <p
-      class="muted"
-      style="
-        text-align:center;
-        margin:25px auto 0;
-        max-width:600px;
-        line-height:1.7;
-      "
-    >
-
-      Somewhere between all the random conversations,
-      annoying internet problems,
-      “Poko”,
-      “Gumi”,
-      and way too many kissy demands…
-
-      there became an us. ❤️
-
-    </p>
-
-    <p
-      class="punjabi"
-      style="
-        text-align:center;
-        margin:14px auto 0;
-        color:#aebedb;
-        font-size:17px;
-      "
-    >
-
-      “ਥੋੜ੍ਹੀ ਜਿਹੀ cute ਜਿਹੀ love story…
-      ਪਰ ਮੇਰੇ ਲਈ ਬਹੁਤ ਵੱਡੀ ਗੱਲ ਏ।” 🥹
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     SINCE 31 AUGUST
-===================================================== -->
-
-<section class="section">
-
-  <div class="glass card sinceBox">
-
-    <div class="kicker">
-      SINCE 31 AUGUST 2026
-    </div>
-
-    <div class="sinceTitle">
-      One month of us. ❤️
-    </div>
-
-    <p class="lead">
-
-      30 days ago, you were just a random person
-      on AirTalk.
-
-      <br><br>
-
-      Somehow, that random conversation became
-      Gumi × Poko.
-
-    </p>
-
-    <div class="sinceCounter">
-
-      <span id="daysTogether">
-        30
-      </span>
-
-      <small>
-        days of us
-      </small>
-
-    </div>
-
-    <p class="punjabi sinceLine">
-
-      “ਇੱਕ random ਗੱਲਬਾਤ ਤੋਂ...
-      ਇੱਥੇ ਤੱਕ ਆ ਗਏ।” ❤️
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     TINY TRUTH
-========================= -->
-
-<section class="section">
-
-  <div class="glass card">
-
-    <div class="kicker">
-      A tiny truth
-    </div>
-
-    <div class="quote">
-
-      “I don't remember every exact sentence
-      from that first night.
-
-      <br>
-
-      <span>
-        I remember how it felt to talk to you.
-      </span>
-
-    </div>
-
-    <p class="lead">
-
-      And honestly, that matters more to me.
-
-      Some conversations disappear from memory
-      word-for-word.
-
-      Some become a person you don't want to lose.
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     LITTLE LOVE MESSAGE
-========================= -->
-
-<section class="section">
-
-  <div class="glass card">
-
-    <div class="kicker">
-      For my Gumi
-    </div>
-
-    <div class="quote">
-
-      “You became my favourite part
-      of a completely unexpected story.”
-
-    </div>
-
-    <p class="lead">
-
-      I didn't plan to meet you.
-
-      I didn't know that one random conversation
-      would turn into late-night talks,
-      stupid jokes,
-      random videos,
-      songs,
-      kissy demands,
-      “Poko”,
-      “Gumi”,
-      and eventually something
-      that feels this important to me.
-
-      <br><br>
-
-      Maybe that's what makes this so special.
-
-      It wasn't planned.
-
-      It just happened.
-
-      And somehow…
-
-      I'm really glad it happened with you. ❤️
-
-    </p>
-
-    <p
-      class="punjabi"
-      style="
-        font-size:20px;
-        color:#c8d7f2;
-        line-height:1.8;
-      "
-    >
-
-      “ਤੂੰ ਮੇਰੀ life ਦੀ ਉਹ ਗੱਲ ਬਣ ਗਈ ਏ
-      ਜਿਹੜੀ ਮੈਂ ਕਦੇ plan ਨਹੀਂ ਕੀਤੀ ਸੀ,
-      ਪਰ ਹੁਣ ਜਿਸ ਤੋਂ ਬਿਨਾਂ ਸੋਚਣਾ ਵੀ ਔਖਾ ਲੱਗਦਾ ਏ।”
-
-    </p>
-
-  </div>
-
-</section>
-
-
-</main>
-
-
-<!-- =========================
-     PAGE NAVIGATION
-========================= -->
-
-<div class="pageNav">
-
-  <span></span>
-
-  <a href="story.html">
-    Our Story →
-  </a>
-
-</div>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer class="footer">
-
-  <div class="footerBig">
-    Gumi × Poko
-  </div>
-
-  <p class="muted">
-
-    31 August → 30 September ·
-    our first monthiversary
-
-  </p>
-
-  <p class="muted punjabi">
-
-    “ਇੱਕ ਮਹੀਨਾ ਹੋਇਆ ਏ…
-    ਪਰ ਕਹਾਣੀ ਹਾਲੇ ਬਹੁਤ ਲੰਮੀ ਏ।” ❤️
-
-  </p>
-
-</footer>
-
-
-<!-- =========================
-     BOTTOM RIGHT SONG PLAYER
-========================= -->
-
-<div
-  class="songPlayer"
-  id="songPlayer"
+<button
+  id="persistentMusic"
+  type="button"
+  aria-label="Play or pause our song"
 >
 
-  <button
-    id="songButton"
-    class="songButton"
-    type="button"
-  >
+  ▶
 
-    <span id="songIcon">
-      ▶
-    </span>
-
-    <span id="songText">
-      Play Our Song
-    </span>
-
-    <span class="songHeart">
-      ♡
-    </span>
-
-  </button>
-
-</div>
+</button>
 
 
-<!-- =========================
-     FLOATING HEARTS
-========================= -->
+<!-- =====================================================
+     WEBSITE PAGES
+===================================================== -->
+
+<iframe
+  id="pageFrame"
+  src="home.html"
+  title="Gumi × Poko"
+></iframe>
+
 
 <script>
 
-function createHeart(){
+/* =====================================================
+   MUSIC
+===================================================== */
 
-  const heart =
-  document.createElement("span");
+const song =
+  document.getElementById("loveSong");
 
-  heart.innerHTML =
-  Math.random() > .5
-  ? "♥"
-  : "♡";
-
-  heart.style.position =
-  "fixed";
-
-  heart.style.left =
-  Math.random() * 100 + "vw";
-
-  heart.style.bottom =
-  "-30px";
-
-  heart.style.fontSize =
-  (12 + Math.random() * 18) + "px";
-
-  heart.style.color =
-  Math.random() > .5
-  ? "#ff4fa3"
-  : "#60a5fa";
-
-  heart.style.pointerEvents =
-  "none";
-
-  heart.style.zIndex =
-  "1";
-
-  heart.style.textShadow =
-  "0 0 15px currentColor";
-
-  heart.style.animation =
-  "floatingHeart 5s linear forwards";
-
-  document.body.appendChild(
-    heart
-  );
-
-  setTimeout(() => {
-    heart.remove();
-  }, 5000);
-
-}
-
-setInterval(
-  createHeart,
-  1200
-);
-
-</script>
+const musicButton =
+  document.getElementById("persistentMusic");
 
 
-<!-- =========================
-     SONG CONTROLLER
-========================= -->
-
-<script>
-
-const loveSong =
-document.getElementById("loveSong");
-
-const loveIntro =
-document.getElementById("loveIntro");
-
-const loveStart =
-document.getElementById("loveStart");
-
-const songPlayer =
-document.getElementById("songPlayer");
-
-const songButton =
-document.getElementById("songButton");
-
-const songIcon =
-document.getElementById("songIcon");
-
-const songText =
-document.getElementById("songText");
+let isPlaying = false;
 
 
-function updateSongUI(){
+/* Play */
 
-  if(loveSong.paused){
+async function playSong(){
 
-    songIcon.textContent =
-    "▶";
+  try{
 
-    songText.textContent =
-    "Play Our Song";
+    await song.play();
 
-    songButton.classList.remove(
-      "playing"
-    );
+    isPlaying = true;
+
+    musicButton.textContent = "❚❚";
+
+    musicButton.classList.add("playing");
 
   }
 
-  else{
+  catch(error){
 
-    songIcon.textContent =
-    "❚❚";
-
-    songText.textContent =
-    "Pause Our Song";
-
-    songButton.classList.add(
-      "playing"
+    console.log(
+      "Browser blocked autoplay until user interaction."
     );
 
   }
@@ -669,150 +202,203 @@ function updateSongUI(){
 }
 
 
-function hideLoveIntro(){
+/* Pause */
 
-  loveIntro.classList.add(
-    "loveIntroHide"
-  );
+function pauseSong(){
 
-  songPlayer.classList.add(
-    "songPlayerVisible"
-  );
+  song.pause();
+
+  isPlaying = false;
+
+  musicButton.textContent = "▶";
+
+  musicButton.classList.remove("playing");
 
 }
 
 
-loveStart.addEventListener(
+/* Button */
+
+musicButton.addEventListener(
   "click",
-  async function(){
-
-    try{
-
-      await loveSong.play();
-
-      loveStart.classList.add(
-        "playing"
-      );
-
-      setTimeout(() => {
-
-        hideLoveIntro();
-
-      }, 500);
-
-    }
-
-    catch(error){
-
-      console.error(
-        "Song could not play:",
-        error
-      );
-
-    }
-
-  }
-);
-
-
-songButton.addEventListener(
-  "click",
-  async function(){
-
-    try{
-
-      if(loveSong.paused){
-
-        await loveSong.play();
-
-      }
-
-      else{
-
-        loveSong.pause();
-
-      }
-
-    }
-
-    catch(error){
-
-      console.error(
-        "Song could not play:",
-        error
-      );
-
-    }
-
-  }
-);
-
-
-loveSong.addEventListener(
-  "play",
-  updateSongUI
-);
-
-loveSong.addEventListener(
-  "pause",
-  updateSongUI
-);
-
-loveSong.addEventListener(
-  "ended",
   function(){
 
-    loveSong.currentTime = 0;
+    if(song.paused){
 
-    updateSongUI();
+      playSong();
+
+    }else{
+
+      pauseSong();
+
+    }
 
   }
 );
 
 
-updateSongUI();
+/* =====================================================
+   SAVE MUSIC STATE
+===================================================== */
 
-</script>
+song.addEventListener(
+  "timeupdate",
+  function(){
 
+    try{
 
-<!-- =========================
-     DAYS TOGETHER
-========================= -->
+      localStorage.setItem(
+        "gumiPokoSongTime",
+        song.currentTime
+      );
 
-<script>
+    }catch(e){}
 
-const startDate =
-new Date("2026-08-31T00:00:00");
-
-
-function updateDaysTogether(){
-
-  const now =
-  new Date();
-
-  const difference =
-  now.getTime() -
-  startDate.getTime();
-
-  const days =
-  Math.floor(
-    difference /
-    (1000 * 60 * 60 * 24)
-  );
-
-  document.getElementById(
-    "daysTogether"
-  ).textContent =
-  Math.max(0, days);
-
-}
+  }
+);
 
 
-updateDaysTogether();
+/* Restore position */
 
-setInterval(
-  updateDaysTogether,
-  60000
+try{
+
+  const savedTime =
+    localStorage.getItem(
+      "gumiPokoSongTime"
+    );
+
+  if(savedTime){
+
+    song.currentTime =
+      parseFloat(savedTime);
+
+  }
+
+}catch(e){}
+
+
+/* =====================================================
+   PAGE NAVIGATION INSIDE IFRAME
+===================================================== */
+
+const frame =
+  document.getElementById("pageFrame");
+
+
+frame.addEventListener(
+  "load",
+  function(){
+
+    try{
+
+      const doc =
+        frame.contentDocument ||
+        frame.contentWindow.document;
+
+
+      doc.addEventListener(
+        "click",
+        function(event){
+
+          const link =
+            event.target.closest("a");
+
+          if(!link){
+            return;
+          }
+
+
+          const href =
+            link.getAttribute("href");
+
+          if(!href){
+            return;
+          }
+
+
+          /*
+            Keep external links normal.
+          */
+
+          if(
+            href.startsWith("http://") ||
+            href.startsWith("https://") ||
+            href.startsWith("#") ||
+            href.startsWith("mailto:")
+          ){
+
+            return;
+
+          }
+
+
+          /*
+            IMPORTANT:
+            If any page points to index.html,
+            send it to home.html instead.
+          */
+
+          if(
+            href === "index.html" ||
+            href === "./index.html"
+          ){
+
+            event.preventDefault();
+
+            frame.src = "home.html";
+
+          }
+
+        }
+      );
+
+
+      /*
+        Tell the child page that it is
+        running inside the persistent shell.
+      */
+
+      doc.documentElement.classList.add(
+        "insidePersistentShell"
+      );
+
+
+    }catch(error){
+
+      console.log(
+        "Frame navigation setup error:",
+        error
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   START SONG AFTER USER INTERACTION
+===================================================== */
+
+document.addEventListener(
+  "click",
+  function(){
+
+    /*
+      Do NOT force autoplay immediately.
+
+      First click anywhere on the website
+      is allowed to start the song.
+    */
+
+    if(song.paused){
+
+      playSong();
+
+    }
+
+  },
+  { once:true }
 );
 
 </script>

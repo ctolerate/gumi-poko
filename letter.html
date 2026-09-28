@@ -1,12 +1,21 @@
 <!doctype html>
 <html>
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
 <title>Letter · Gumi × Poko</title>
-<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="style.css">
+
 
 <style>
+
 /* ================================
    LETTER PAGE SPECIAL EFFECTS
 ================================ */
@@ -16,7 +25,9 @@
   min-height:100vh;
 }
 
+
 /* Floating hearts */
+
 .heartFloat{
   position:fixed;
   bottom:-30px;
@@ -27,9 +38,14 @@
   opacity:0;
 }
 
+
 @keyframes heartRise{
+
   0%{
-    transform:translateY(0) scale(.5) rotate(0deg);
+    transform:
+      translateY(0)
+      scale(.5)
+      rotate(0deg);
     opacity:0;
   }
 
@@ -42,100 +58,179 @@
   }
 
   100%{
-    transform:translateY(-110vh) translateX(80px) scale(1.4) rotate(25deg);
+    transform:
+      translateY(-110vh)
+      translateX(80px)
+      scale(1.4)
+      rotate(25deg);
     opacity:0;
   }
+
 }
 
+
 /* Letter glow */
+
 .letter{
   position:relative;
   overflow:hidden;
-  border:1px solid rgba(120,170,255,.25);
+
+  border:
+    1px solid
+    rgba(120,170,255,.25);
+
   box-shadow:
     0 30px 100px rgba(0,20,90,.45),
     0 0 80px rgba(59,130,246,.12);
 }
 
-/* Moving light inside letter */
+
 .letter::before{
+
   content:"";
+
   position:absolute;
+
   width:500px;
   height:500px;
+
   top:-250px;
   right:-250px;
+
   border-radius:50%;
-  background:radial-gradient(
-    circle,
-    rgba(96,165,250,.20),
-    transparent 70%
-  );
-  animation:letterGlow 8s ease-in-out infinite alternate;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(96,165,250,.20),
+      transparent 70%
+    );
+
+  animation:
+    letterGlow 8s ease-in-out infinite alternate;
+
   pointer-events:none;
+
 }
 
+
 @keyframes letterGlow{
+
   from{
-    transform:translate(0,0) scale(1);
+    transform:
+      translate(0,0)
+      scale(1);
   }
 
   to{
-    transform:translate(-100px,120px) scale(1.3);
+    transform:
+      translate(-100px,120px)
+      scale(1.3);
   }
+
 }
+
 
 /* Letter heading */
+
 .letter h2{
+
   position:relative;
   z-index:2;
+
   text-shadow:
-    0 0 25px rgba(96,165,250,.25);
+    0 0 25px
+    rgba(96,165,250,.25);
+
 }
 
+
 /* Paragraph styling */
+
 .letter p{
+
   position:relative;
   z-index:2;
+
   transition:.3s ease;
+
 }
+
 
 .letter p:hover{
   transform:translateX(5px);
 }
 
+
 /* Important emotional lines */
+
 .letter .highlight{
+
   margin:35px 0;
+
   padding:22px 24px;
-  border-left:4px solid var(--electric);
+
+  border-left:
+    4px solid
+    var(--electric);
+
   border-radius:18px;
-  background:linear-gradient(
-    100deg,
-    rgba(59,130,246,.12),
-    rgba(124,108,255,.08),
-    transparent
-  );
-  box-shadow:0 15px 40px rgba(0,30,100,.12);
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(59,130,246,.12),
+      rgba(124,108,255,.08),
+      transparent
+    );
+
+  box-shadow:
+    0 15px 40px
+    rgba(0,30,100,.12);
+
 }
+
 
 /* Signature */
+
 .signature{
+
   margin-top:45px;
+
   padding-top:30px;
-  border-top:1px solid rgba(160,190,255,.18);
+
+  border-top:
+    1px solid
+    rgba(160,190,255,.18);
+
 }
+
 
 /* Final heart */
+
 .finalHeart{
+
   text-align:center;
+
   font-size:42px;
+
   margin-top:35px;
-  animation:heartBeat 1.8s ease-in-out infinite;
-  filter:drop-shadow(0 0 18px rgba(255,90,160,.45));
+
+  animation:
+    heartBeat 1.8s
+    ease-in-out infinite;
+
+  filter:
+    drop-shadow(
+      0 0 18px
+      rgba(255,90,160,.45)
+    );
+
 }
 
+
 @keyframes heartBeat{
+
   0%,100%{
     transform:scale(1);
   }
@@ -143,27 +238,50 @@
   50%{
     transform:scale(1.18);
   }
+
 }
+
 
 /* Small label */
+
 .letterLabel{
+
   display:inline-flex;
+
   align-items:center;
+
   gap:8px;
+
   margin-bottom:18px;
+
   padding:9px 15px;
+
   border-radius:999px;
-  background:rgba(59,130,246,.12);
-  border:1px solid rgba(96,165,250,.25);
+
+  background:
+    rgba(59,130,246,.12);
+
+  border:
+    1px solid
+    rgba(96,165,250,.25);
+
   color:#9bc4ff;
+
   font-size:11px;
+
   font-weight:900;
+
   letter-spacing:.15em;
+
   text-transform:uppercase;
+
 }
 
+
 /* Mobile */
+
 @media(max-width:600px){
+
   .letter{
     padding:24px !important;
   }
@@ -176,12 +294,35 @@
     font-size:16px !important;
     line-height:1.85 !important;
   }
+
 }
+
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- ================================
+     BACKGROUND MUSIC
+================================ -->
+
+<audio
+  id="loveSong"
+  preload="auto">
+
+  <source
+    src="assets/i-think-they-call-this-love.mp3"
+    type="audio/mpeg">
+
+</audio>
+
+
+<!-- ================================
+     NAVIGATION
+================================ -->
 
 <nav class="nav">
 
@@ -189,14 +330,32 @@
 Gumi <b>×</b> Poko
 </a>
 
+
 <div class="navlinks">
 
-<a href="story.html">Our Story</a>
-<a href="gumi.html">Gumi</a>
-<a href="memories.html">Memories</a>
-<a href="videos.html">Videos</a>
-<a href="letter.html">Letter</a>
-<a href="final.html">♡</a>
+<a href="story.html">
+Our Story
+</a>
+
+<a href="gumi.html">
+Gumi
+</a>
+
+<a href="memories.html">
+Memories
+</a>
+
+<a href="videos.html">
+Videos
+</a>
+
+<a href="letter.html">
+Letter
+</a>
+
+<a href="final.html">
+♡
+</a>
 
 </div>
 
@@ -212,27 +371,40 @@ Gumi <b>×</b> Poko
 
 <script>
 
-const s = document.getElementById('sparkles');
+const s =
+document.getElementById('sparkles');
+
 
 for(let i = 0; i < 70; i++){
 
-  let x = document.createElement('span');
+  let x =
+    document.createElement('span');
+
 
   x.className =
     'spark ' +
-    (Math.random() < 0.16 ? 'star' : '');
+    (
+      Math.random() < 0.16
+      ? 'star'
+      : ''
+    );
+
 
   x.style.left =
     Math.random() * 100 + 'vw';
 
+
   x.style.top =
     Math.random() * 110 + 'vh';
+
 
   x.style.animationDuration =
     (5 + Math.random() * 10) + 's';
 
+
   x.style.animationDelay =
     (-Math.random() * 12) + 's';
+
 
   s.appendChild(x);
 
@@ -243,45 +415,82 @@ for(let i = 0; i < 70; i++){
    FLOATING HEARTS
 ================================ */
 
-const hearts = ['♥','♡','❤','💙','💜'];
+const hearts =
+[
+  '♥',
+  '♡',
+  '❤',
+  '💙',
+  '💜'
+];
+
 
 function createHeart(){
 
   const heart =
     document.createElement('div');
 
-  heart.className = 'heartFloat';
+
+  heart.className =
+    'heartFloat';
+
 
   heart.innerHTML =
-    hearts[Math.floor(Math.random()*hearts.length)];
+    hearts[
+      Math.floor(
+        Math.random() *
+        hearts.length
+      )
+    ];
+
 
   heart.style.left =
     Math.random() * 100 + 'vw';
 
+
   heart.style.fontSize =
     (12 + Math.random()*22) + 'px';
+
 
   heart.style.animationDuration =
     (8 + Math.random()*8) + 's';
 
+
   heart.style.animationDelay =
     Math.random() * 2 + 's';
 
-  document.body.appendChild(heart);
 
-  setTimeout(()=>{
-    heart.remove();
-  },16000);
+  document.body.appendChild(
+    heart
+  );
+
+
+  setTimeout(
+    ()=>{
+      heart.remove();
+    },
+    16000
+  );
+
 }
 
-setInterval(createHeart,900);
+
+setInterval(
+  createHeart,
+  900
+);
 
 </script>
 
 
+<!-- ================================
+     MAIN
+================================ -->
+
 <main class="container letterPage">
 
 <section class="section">
+
 
 <div class="kicker">
 05 · From Poko
@@ -517,6 +726,313 @@ style="font-size:18px">
 </main>
 
 
+<!-- ================================
+     PAGE NAVIGATION
+================================ -->
+
+<div class="pageNav">
+
+<a href="videos.html">
+← Videos
+</a>
+
+
+<a href="final.html">
+Final → 
+</a>
+
+</div>
+
+
+<!-- ================================
+     MUSIC PLAYER
+================================ -->
+
+<div
+  class="songPlayer"
+  id="songPlayer"
+>
+
+<button
+  id="songButton"
+  class="songButton"
+  type="button"
+>
+
+<span id="songIcon">
+▶
+</span>
+
+<span id="songText">
+Play Our Song
+</span>
+
+<span class="songHeart">
+♡
+</span>
+
+</button>
+
+</div>
+
+
+<!-- ================================
+     MUSIC CONTROLLER
+================================ -->
+
+<script>
+
+const loveSong =
+document.getElementById(
+  "loveSong"
+);
+
+
+const songButton =
+document.getElementById(
+  "songButton"
+);
+
+
+const songIcon =
+document.getElementById(
+  "songIcon"
+);
+
+
+const songText =
+document.getElementById(
+  "songText"
+);
+
+
+const SONG_TIME_KEY =
+"gumiPokoSongTime";
+
+
+const SONG_PLAYING_KEY =
+"gumiPokoSongPlaying";
+
+
+/* ================================
+   RESTORE SONG POSITION
+================================ */
+
+loveSong.addEventListener(
+  "loadedmetadata",
+  function(){
+
+    const savedTime =
+      parseFloat(
+        localStorage.getItem(
+          SONG_TIME_KEY
+        )
+      );
+
+
+    if(
+      Number.isFinite(savedTime) &&
+      savedTime > 0 &&
+      savedTime < loveSong.duration
+    ){
+
+      loveSong.currentTime =
+        savedTime;
+
+    }
+
+  }
+);
+
+
+/* ================================
+   UPDATE PLAYER UI
+================================ */
+
+function updateSongUI(){
+
+  if(loveSong.paused){
+
+    songIcon.textContent =
+      "▶";
+
+    songText.textContent =
+      "Play Our Song";
+
+    songButton.classList.remove(
+      "playing"
+    );
+
+  }
+
+  else{
+
+    songIcon.textContent =
+      "❚❚";
+
+    songText.textContent =
+      "Pause Our Song";
+
+    songButton.classList.add(
+      "playing"
+    );
+
+  }
+
+}
+
+
+/* ================================
+   SAVE SONG STATE
+================================ */
+
+function saveSongState(){
+
+  localStorage.setItem(
+    SONG_TIME_KEY,
+    String(
+      loveSong.currentTime || 0
+    )
+  );
+
+
+  localStorage.setItem(
+    SONG_PLAYING_KEY,
+    loveSong.paused
+      ? "false"
+      : "true"
+  );
+
+}
+
+
+/* ================================
+   PLAY / PAUSE
+================================ */
+
+songButton.addEventListener(
+  "click",
+  async function(){
+
+    try{
+
+      if(loveSong.paused){
+
+        await loveSong.play();
+
+      }
+
+      else{
+
+        loveSong.pause();
+
+      }
+
+      updateSongUI();
+
+    }
+
+    catch(error){
+
+      console.error(
+        "Song could not play:",
+        error
+      );
+
+    }
+
+  }
+);
+
+
+/* ================================
+   AUDIO EVENTS
+================================ */
+
+loveSong.addEventListener(
+  "play",
+  function(){
+
+    localStorage.setItem(
+      SONG_PLAYING_KEY,
+      "true"
+    );
+
+    updateSongUI();
+
+  }
+);
+
+
+loveSong.addEventListener(
+  "pause",
+  function(){
+
+    saveSongState();
+
+    updateSongUI();
+
+  }
+);
+
+
+/* Save every second */
+
+setInterval(
+  saveSongState,
+  1000
+);
+
+
+/* Save before leaving */
+
+window.addEventListener(
+  "pagehide",
+  saveSongState
+);
+
+
+window.addEventListener(
+  "beforeunload",
+  saveSongState
+);
+
+
+/* ================================
+   SONG FINISHED
+================================ */
+
+loveSong.addEventListener(
+  "ended",
+  function(){
+
+    localStorage.setItem(
+      SONG_TIME_KEY,
+      "0"
+    );
+
+    localStorage.setItem(
+      SONG_PLAYING_KEY,
+      "false"
+    );
+
+    updateSongUI();
+
+  }
+);
+
+
+/* Initial state */
+
+updateSongUI();
+
+</script>
+
+
+<!-- ================================
+     FOOTER
+================================ -->
+
 <footer class="footer">
 
 <div class="footerBig">
@@ -535,4 +1051,5 @@ Gumi × Poko
 
 
 </body>
+
 </html>
