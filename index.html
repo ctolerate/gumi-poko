@@ -6,13 +6,17 @@
 <meta charset="utf-8">
 
 <meta name="viewport"
-content="width=device-width,initial-scale=1">
+      content="width=device-width,initial-scale=1">
 
 <title>Gumi × Poko</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
+
+/* =====================================================
+   ROOT
+===================================================== */
 
 html,
 body{
@@ -21,20 +25,21 @@ body{
   width:100%;
   height:100%;
   overflow:hidden;
-}
-
-body{
   background:#050817;
 }
 
-/* =========================
+
+/* =====================================================
    PERSISTENT MUSIC PLAYER
-========================= */
+===================================================== */
 
 #persistentMusic{
+
   position:fixed;
+
   right:22px;
   bottom:22px;
+
   z-index:999999;
 
   width:58px;
@@ -48,7 +53,7 @@ body{
     linear-gradient(
       145deg,
       rgba(70,100,180,.35),
-      rgba(20,25,60,.85)
+      rgba(20,25,60,.9)
     );
 
   color:white;
@@ -67,6 +72,8 @@ body{
   backdrop-filter:blur(15px);
 
   transition:.25s ease;
+
+  user-select:none;
 }
 
 #persistentMusic:hover{
@@ -74,29 +81,38 @@ body{
 }
 
 #persistentMusic.playing{
+
   box-shadow:
     0 12px 40px rgba(0,0,0,.45),
     0 0 45px rgba(100,150,255,.35);
+
 }
 
-/* =========================
+
+/* =====================================================
    PAGE FRAME
-========================= */
+===================================================== */
 
 #pageFrame{
+
   width:100%;
   height:100%;
+
   border:0;
+
   display:block;
+
 }
 
-/* =========================
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
   #persistentMusic{
+
     width:52px;
     height:52px;
 
@@ -104,6 +120,7 @@ body{
     bottom:14px;
 
     font-size:19px;
+
   }
 
 }
@@ -117,7 +134,7 @@ body{
 
 
 <!-- =====================================================
-     PERSISTENT AUDIO
+     ONE AND ONLY AUDIO
 ===================================================== -->
 
 <audio
@@ -134,7 +151,7 @@ body{
 
 
 <!-- =====================================================
-     MUSIC BUTTON
+     PERMANENT MUSIC BUTTON
 ===================================================== -->
 
 <button
@@ -149,7 +166,7 @@ body{
 
 
 <!-- =====================================================
-     WEBSITE PAGES
+     ALL WEBSITE PAGES LIVE INSIDE THIS FRAME
 ===================================================== -->
 
 <iframe
@@ -162,7 +179,7 @@ body{
 <script>
 
 /* =====================================================
-   MUSIC
+   ELEMENTS
 ===================================================== */
 
 const song =
@@ -171,19 +188,33 @@ const song =
 const musicButton =
   document.getElementById("persistentMusic");
 
+const frame =
+  document.getElementById("pageFrame");
 
-let isPlaying = false;
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
+
+const SONG_TIME_KEY =
+  "gumiPokoSongTime";
 
 
-/* Play */
+/* =====================================================
+   UPDATE MUSIC BUTTON
+===================================================== */
 
-async function playSong(){
+function updateMusicButton(){
 
-  try{
+  if(song.paused){
 
-    await song.play();
+    musicButton.textContent = "▶";
 
-    isPlaying = true;
+    musicButton.classList.remove("playing");
+
+  }
+
+  else{
 
     musicButton.textContent = "❚❚";
 
@@ -191,10 +222,28 @@ async function playSong(){
 
   }
 
+}
+
+
+/* =====================================================
+   PLAY
+===================================================== */
+
+async function playSong(){
+
+  try{
+
+    await song.play();
+
+    updateMusicButton();
+
+  }
+
   catch(error){
 
     console.log(
-      "Browser blocked autoplay until user interaction."
+      "Browser blocked music:",
+      error
     );
 
   }
@@ -202,22 +251,22 @@ async function playSong(){
 }
 
 
-/* Pause */
+/* =====================================================
+   PAUSE
+===================================================== */
 
 function pauseSong(){
 
   song.pause();
 
-  isPlaying = false;
-
-  musicButton.textContent = "▶";
-
-  musicButton.classList.remove("playing");
+  updateMusicButton();
 
 }
 
 
-/* Button */
+/* =====================================================
+   MUSIC BUTTON
+===================================================== */
 
 musicButton.addEventListener(
   "click",
@@ -227,7 +276,9 @@ musicButton.addEventListener(
 
       playSong();
 
-    }else{
+    }
+
+    else{
 
       pauseSong();
 
@@ -238,167 +289,455 @@ musicButton.addEventListener(
 
 
 /* =====================================================
-   SAVE MUSIC STATE
+   SAVE CURRENT POSITION
 ===================================================== */
+
+function saveSongPosition(){
+
+  try{
+
+    localStorage.setItem(
+      SONG_TIME_KEY,
+      String(song.currentTime || 0)
+    );
+
+  }
+
+  catch(error){}
+
+}
+
 
 song.addEventListener(
   "timeupdate",
-  function(){
-
-    try{
-
-      localStorage.setItem(
-        "gumiPokoSongTime",
-        song.currentTime
-      );
-
-    }catch(e){}
-
-  }
+  saveSongPosition
 );
 
 
-/* Restore position */
+song.addEventListener(
+  "pause",
+  saveSongPosition
+);
+
+
+/* =====================================================
+   RESTORE LAST POSITION
+===================================================== */
 
 try{
 
   const savedTime =
-    localStorage.getItem(
-      "gumiPokoSongTime"
+    parseFloat(
+      localStorage.getItem(
+        SONG_TIME_KEY
+      )
     );
 
-  if(savedTime){
+  if(
+    Number.isFinite(savedTime) &&
+    savedTime >= 0
+  ){
 
-    song.currentTime =
-      parseFloat(savedTime);
+    song.addEventListener(
+      "loadedmetadata",
+      function(){
+
+        if(savedTime < song.duration){
+
+          song.currentTime =
+            savedTime;
+
+        }
+
+      },
+      {once:true}
+    );
 
   }
 
-}catch(e){}
+}
+
+catch(error){}
 
 
 /* =====================================================
-   PAGE NAVIGATION INSIDE IFRAME
+   PAGE LOAD
 ===================================================== */
-
-const frame =
-  document.getElementById("pageFrame");
-
 
 frame.addEventListener(
   "load",
   function(){
 
-    try{
+    cleanChildMusic();
 
-      const doc =
-        frame.contentDocument ||
-        frame.contentWindow.document;
+    setupChildNavigation();
 
-
-      doc.addEventListener(
-        "click",
-        function(event){
-
-          const link =
-            event.target.closest("a");
-
-          if(!link){
-            return;
-          }
-
-
-          const href =
-            link.getAttribute("href");
-
-          if(!href){
-            return;
-          }
-
-
-          /*
-            Keep external links normal.
-          */
-
-          if(
-            href.startsWith("http://") ||
-            href.startsWith("https://") ||
-            href.startsWith("#") ||
-            href.startsWith("mailto:")
-          ){
-
-            return;
-
-          }
-
-
-          /*
-            IMPORTANT:
-            If any page points to index.html,
-            send it to home.html instead.
-          */
-
-          if(
-            href === "index.html" ||
-            href === "./index.html"
-          ){
-
-            event.preventDefault();
-
-            frame.src = "home.html";
-
-          }
-
-        }
-      );
-
-
-      /*
-        Tell the child page that it is
-        running inside the persistent shell.
-      */
-
-      doc.documentElement.classList.add(
-        "insidePersistentShell"
-      );
-
-
-    }catch(error){
-
-      console.log(
-        "Frame navigation setup error:",
-        error
-      );
-
-    }
+    setupHomePlayButton();
 
   }
 );
 
 
 /* =====================================================
-   START SONG AFTER USER INTERACTION
+   REMOVE OLD MUSIC SYSTEMS FROM CHILD PAGES
 ===================================================== */
 
-document.addEventListener(
-  "click",
-  function(){
+function cleanChildMusic(){
+
+  try{
+
+    const doc =
+      frame.contentDocument ||
+      frame.contentWindow.document;
+
 
     /*
-      Do NOT force autoplay immediately.
-
-      First click anywhere on the website
-      is allowed to start the song.
+      Remove any audio element
+      inside the child page.
     */
 
-    if(song.paused){
+    const childAudios =
+      doc.querySelectorAll("audio");
 
-      playSong();
+    childAudios.forEach(
+      function(audio){
+
+        audio.pause();
+
+        audio.remove();
+
+      }
+    );
+
+
+    /*
+      Remove old music players.
+    */
+
+    const selectors = [
+
+      "#songPlayer",
+
+      "#songButton",
+
+      "#loveStart",
+
+      ".songPlayer",
+
+      ".musicPlayer",
+
+      ".musicButton",
+
+      "[id*='songPlayer']",
+
+      "[id*='musicPlayer']"
+
+    ];
+
+
+    selectors.forEach(
+      function(selector){
+
+        doc
+          .querySelectorAll(selector)
+          .forEach(
+            function(element){
+
+              /*
+                Don't remove loveStart here.
+                It gets handled separately below.
+              */
+
+              if(element.id !== "loveStart"){
+
+                element.remove();
+
+              }
+
+            }
+          );
+
+      }
+    );
+
+
+    /*
+      Hide old music UI if any remains.
+    */
+
+    const oldPlayers =
+      doc.querySelectorAll(
+        ".songPlayer"
+      );
+
+    oldPlayers.forEach(
+      function(player){
+
+        player.remove();
+
+      }
+    );
+
+  }
+
+  catch(error){
+
+    console.log(
+      "Could not clean child music:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   HOME PAGE "PLAY OUR SONG" BUTTON
+===================================================== */
+
+function setupHomePlayButton(){
+
+  try{
+
+    const doc =
+      frame.contentDocument ||
+      frame.contentWindow.document;
+
+
+    const oldStart =
+      doc.getElementById(
+        "loveStart"
+      );
+
+
+    if(!oldStart){
+
+      return;
 
     }
 
-  },
-  { once:true }
+
+    /*
+      Clone the button.
+
+      This removes the old home.html
+      click listener which was trying
+      to control its own audio.
+    */
+
+    const newStart =
+      oldStart.cloneNode(true);
+
+
+    oldStart.replaceWith(
+      newStart
+    );
+
+
+    newStart.addEventListener(
+      "click",
+      function(event){
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        playSong();
+
+        /*
+          Hide the intro just like
+          the original button did.
+        */
+
+        const intro =
+          doc.getElementById(
+            "loveIntro"
+          );
+
+        if(intro){
+
+          intro.classList.add(
+            "loveIntroHide"
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+  catch(error){
+
+    console.log(
+      "Home music setup error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CHILD PAGE NAVIGATION
+===================================================== */
+
+function setupChildNavigation(){
+
+  try{
+
+    const doc =
+      frame.contentDocument ||
+      frame.contentWindow.document;
+
+
+    /*
+      Add persistent-shell class.
+    */
+
+    doc.documentElement.classList.add(
+      "insidePersistentShell"
+    );
+
+
+    /*
+      Intercept internal links.
+      They stay inside the iframe.
+    */
+
+    doc.addEventListener(
+      "click",
+      function(event){
+
+        const link =
+          event.target.closest("a");
+
+
+        if(!link){
+
+          return;
+
+        }
+
+
+        const href =
+          link.getAttribute("href");
+
+
+        if(!href){
+
+          return;
+
+        }
+
+
+        /*
+          External links remain normal.
+        */
+
+        if(
+          href.startsWith("http://") ||
+          href.startsWith("https://") ||
+          href.startsWith("mailto:") ||
+          href.startsWith("#")
+        ){
+
+          return;
+
+        }
+
+
+        /*
+          If a page points to index.html,
+          keep the user inside the shell.
+        */
+
+        if(
+          href === "index.html" ||
+          href === "./index.html"
+        ){
+
+          event.preventDefault();
+
+          frame.src =
+            "home.html";
+
+          return;
+
+        }
+
+
+        /*
+          Normal internal page.
+          It loads inside the iframe.
+        */
+
+        if(
+          href.endsWith(".html")
+        ){
+
+          event.preventDefault();
+
+          frame.src =
+            href;
+
+        }
+
+      },
+      true
+    );
+
+  }
+
+  catch(error){
+
+    console.log(
+      "Navigation setup error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SONG ENDED
+===================================================== */
+
+song.addEventListener(
+  "ended",
+  function(){
+
+    song.currentTime = 0;
+
+    localStorage.setItem(
+      SONG_TIME_KEY,
+      "0"
+    );
+
+    updateMusicButton();
+
+  }
+);
+
+
+/* =====================================================
+   INITIAL BUTTON STATE
+===================================================== */
+
+updateMusicButton();
+
+
+/* =====================================================
+   SAVE BEFORE LEAVING
+===================================================== */
+
+window.addEventListener(
+  "pagehide",
+  saveSongPosition
 );
 
 </script>
